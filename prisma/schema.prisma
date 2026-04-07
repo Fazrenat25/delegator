@@ -1,0 +1,240 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id               String           @id @default(cuid())
+  email            String?          @unique
+  password         String
+  firstName        String
+  lastName         String
+  role             Role             @default(EMPLOYEE)
+  companyId        String?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  username         String           @unique
+  position         Position?        @default(MANAGER)
+  messagesReceived Message[]        @relation("MessageReceiver")
+  messagesSent     Message[]        @relation("MessageSender")
+  notifications    Notification[]
+  roomMemberships  RoomMember[]     @relation("RoomMemberUser")
+  subscription     Subscription?
+  supportMessages  SupportMessage[] @relation("UserSupportMessages")
+  tasks            Task[]           @relation("AssignedTasks")
+  createdTasks     Task[]           @relation("CreatedTasks")
+  company          Company?         @relation(fields: [companyId], references: [id])
+
+  @@index([email])
+  @@index([username])
+  @@index([companyId])
+}
+
+model Company {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  tasks       Task[]
+  users       User[]
+
+  @@index([name])
+}
+
+model Task {
+  id           String     @id @default(cuid())
+  title        String
+  description  String
+  status       TaskStatus @default(PENDING)
+  priority     Priority   @default(MEDIUM)
+  deadline     DateTime?
+  companyId    String
+  createdById  String
+  assignedToId String?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  comments     Comment[]
+  assignedTo   User?      @relation("AssignedTasks", fields: [assignedToId], references: [id])
+  company      Company    @relation(fields: [companyId], references: [id])
+  createdBy    User       @relation("CreatedTasks", fields: [createdById], references: [id])
+
+  @@index([companyId])
+  @@index([assignedToId])
+  @@index([status])
+  @@index([priority])
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  taskId    String
+  authorId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  task      Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@index([taskId])
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String
+  type      NotificationType
+  title     String
+  message   String
+  read      Boolean          @default(false)
+  taskId    String?
+  createdAt DateTime         @default(now())
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([read])
+}
+
+model Message {
+  id         String   @id @default(cuid())
+  content    String
+  senderId   String
+  receiverId String?
+  roomId     String?
+  read       Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  receiver   User?    @relation("MessageReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  room       Room?    @relation("RoomMessages", fields: [roomId], references: [id], onDelete: Cascade)
+  sender     User     @relation("MessageSender", fields: [senderId], references: [id], onDelete: Cascade)
+
+  @@index([senderId])
+  @@index([receiverId])
+  @@index([roomId])
+  @@index([createdAt])
+}
+
+model Room {
+  id        String       @id @default(cuid())
+  name      String?
+  type      RoomType
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  messages  Message[]    @relation("RoomMessages")
+  members   RoomMember[] @relation("RoomMemberRoom")
+
+  @@index([type])
+}
+
+model RoomMember {
+  id       String   @id @default(cuid())
+  roomId   String
+  userId   String
+  joinedAt DateTime @default(now())
+  room     Room     @relation("RoomMemberRoom", fields: [roomId], references: [id], onDelete: Cascade)
+  user     User     @relation("RoomMemberUser", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([roomId, userId])
+  @@index([roomId])
+  @@index([userId])
+}
+
+model Subscription {
+  id        String    @id @default(cuid())
+  userId    String    @unique
+  plan      PlanType  @default(FREE)
+  startDate DateTime  @default(now())
+  endDate   DateTime?
+  isActive  Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([plan])
+  @@index([isActive])
+}
+
+model SupportMessage {
+  id        String                @id @default(cuid())
+  userId    String
+  message   String
+  status    SupportMessageStatus  @default(OPEN)
+  createdAt DateTime              @default(now())
+  updatedAt DateTime              @updatedAt
+  user      User                  @relation("UserSupportMessages", fields: [userId], references: [id], onDelete: Cascade)
+  replies   SupportMessageReply[]
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model SupportMessageReply {
+  id         String         @id @default(cuid())
+  messageId  String
+  fromAdmin  Boolean        @default(false)
+  message    String
+  createdAt  DateTime       @default(now())
+  messageObj SupportMessage @relation(fields: [messageId], references: [id], onDelete: Cascade)
+
+  @@index([messageId])
+  @@index([createdAt])
+}
+
+enum SupportMessageStatus {
+  OPEN
+  IN_PROGRESS
+  CLOSED
+}
+
+enum PlanType {
+  FREE
+  TEAM
+  BUSINESS
+}
+
+enum RoomType {
+  GENERAL
+  PRIVATE
+}
+
+enum Role {
+  DIRECTOR
+  EMPLOYEE
+  ADMIN
+}
+
+enum NotificationType {
+  TASK_ASSIGNED
+  TASK_STATUS_CHANGED
+  TASK_COMPLETED
+  TASK_COMMENT
+  GENERAL
+}
+
+enum Position {
+  MANAGER
+  DEVELOPER
+  DESIGNER
+  ANALYST
+  TESTER
+  HR
+  ACCOUNTANT
+  SALESMAN
+  SUPPORT
+  INTERN
+}
+
+enum TaskStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}

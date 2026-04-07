@@ -1,36 +1,176 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Delegator - Система делегирования задач
 
-## Getting Started
+Профессиональная платформа для управления задачами и делегирования с премиальным бизнес-дизайном.
 
-First, run the development server:
+## 🚀 Технологии
+
+- **Frontend:** Next.js 15, React 19, TypeScript
+- **Стили:** Tailwind CSS 4
+- **База данных:** PostgreSQL
+- **ORM:** Prisma
+- **Аутентификация:** JWT (jose)
+- **Хэширование:** bcryptjs
+
+## 📋 Требования
+
+- Node.js 20+
+- PostgreSQL 14+
+- npm или yarn
+
+## 🛠 Установка
+
+### 1. Установка зависимостей
+
+```bash
+npm install
+```
+
+### 2. Настройка базы данных
+
+Создайте базу данных PostgreSQL:
+
+```sql
+CREATE DATABASE delegator;
+```
+
+Обновите файл `.env` с вашими учетными данными:
+
+```env
+DATABASE_URL="postgresql://postgres:ваш_пароль@localhost:5432/delegator?schema=public"
+JWT_SECRET="ваш-секретный-ключ-для-jwt"
+```
+
+### 3. Применение схемы базы данных
+
+```bash
+npx prisma migrate dev --name init
+```
+
+Или создайте базу данных с помощью Prisma:
+
+```bash
+npx prisma db push
+```
+
+### 4. Запуск разработки
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Приложение будет доступно по адресу: http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 Сборка для продакшена
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## 👥 Роли пользователей
 
-To learn more about Next.js, take a look at the following resources:
+### Директор
+- Регистрация в системе
+- Создание и управление сотрудниками
+- Создание и распределение задач
+- Просмотр статистики по задачам
+- Назначение приоритетов и сроков
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Сотрудник
+- Просмотр назначенных задач
+- Обновление статуса задач
+- Просмотр личной статистики
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🎨 Особенности дизайна
 
-## Deploy on Vercel
+- Премиальная цветовая схема (slate + amber)
+- Градиентные элементы
+- Glassmorphism эффекты
+- Плавные анимации
+- Адаптивный дизайн
+- Современные карточки и компоненты
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📁 Структура проекта
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+delegator/
+├── prisma/
+│   └── schema.prisma          # Схема базы данных
+├── src/
+│   ├── app/
+│   │   ├── api/               # API маршруты
+│   │   ├── dashboard/         # Личный кабинет
+│   │   ├── login/             # Страница входа
+│   │   ├── register/          # Страница регистрации
+│   │   ├── layout.tsx         # Основной layout
+│   │   └── page.tsx           # Главная страница
+│   ├── components/
+│   │   ├── layout/            # Компоненты layout
+│   │   └── ui/                # UI компоненты
+│   ├── lib/
+│   │   ├── auth.ts            # Аутентификация
+│   │   ├── prisma.ts          # Prisma клиент
+│   │   └── utils.ts           # Утилиты
+│   ├── types/
+│   │   └── index.ts           # TypeScript типы
+│   └── middleware.ts          # Next.js middleware
+└── .env                       # Переменные окружения
+```
+
+## 🔐 Безопасность
+
+- JWT токены с истечением срока действия
+- Хэширование паролей (bcrypt)
+- HttpOnly cookies
+- Защита маршрутов через middleware
+- Валидация данных на сервере
+
+## 📊 API Endpoints
+
+- `POST /api/auth/register` - Регистрация
+- `POST /api/auth/login` - Вход
+- `GET /api/auth/session` - Получение сессии
+- `GET /api/tasks` - Список задач
+- `POST /api/tasks` - Создание задачи
+- `GET /api/employees` - Список сотрудников
+- `POST /api/employees` - Добавление сотрудника
+
+## 🎯 Функциональность
+
+### Для директора:
+1. Дашборд со статистикой
+2. Создание задач с приоритетами
+3. Назначение исполнителей
+4. Управление сотрудниками
+5. Фильтрация и поиск задач
+
+### Для сотрудника:
+1. Просмотр назначенных задач
+2. Фильтрация по статусу
+3. Отслеживание сроков
+
+## 📝 Тестовые данные
+
+После регистрации директора, вы можете создать сотрудника через панель управления.
+
+## 🚀 Деплой на VPS
+
+1. Склонируйте репозиторий на сервер
+2. Установите зависимости: `npm install`
+3. Настройте `.env` с продакшен значениями
+4. Примените миграции: `npx prisma migrate deploy`
+5. Соберите проект: `npm run build`
+6. Запустите: `npm start`
+
+Рекомендуется использовать PM2 для управления процессом:
+
+```bash
+npm install -g pm2
+pm2 start npm --name "delegator" -- start
+pm2 save
+pm2 startup
+```
+
+## 📄 Лицензия
+
+© 2026 Delegator. Все права защищены.
