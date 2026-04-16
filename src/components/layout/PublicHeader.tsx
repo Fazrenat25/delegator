@@ -70,7 +70,7 @@ export function PublicHeader() {
             ) : isLoggedIn && user ? (
               <div className="flex items-center gap-3">
                 {/* Admin Panel Link */}
-                {user.role === 'ADMIN' && (
+                {user.role === 'ADMIN' ? (
                   <Link
                     href="/admin"
                     className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-violet-500 to-violet-600 text-white font-medium rounded-lg hover:from-violet-600 hover:to-violet-700 transition-all shadow-lg shadow-violet-500/25 text-sm"
@@ -78,16 +78,16 @@ export function PublicHeader() {
                     <Shield className="w-4 h-4" />
                     Админ-панель
                   </Link>
+                ) : (
+                  /* Dashboard Button for non-admin users */
+                  <Link
+                    href="/dashboard"
+                    className="px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-medium rounded-lg hover:from-emerald-400 hover:to-teal-500 transition-all shadow-lg shadow-emerald-500/25 text-sm sm:text-base"
+                  >
+                    Личный кабинет
+                  </Link>
                 )}
 
-                {/* Dashboard Button */}
-                <Link
-                  href="/dashboard"
-                  className="px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-medium rounded-lg hover:from-emerald-400 hover:to-teal-500 transition-all shadow-lg shadow-emerald-500/25 text-sm sm:text-base"
-                >
-                  Личный кабинет
-                </Link>
-                
                 {/* Logout Button */}
                 <button
                   onClick={handleLogout}
