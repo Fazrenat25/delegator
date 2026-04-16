@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { LogOut, User } from 'lucide-react';
+import { LogOut, User, Shield } from 'lucide-react';
 
 interface UserData {
   id: string;
@@ -55,12 +55,12 @@ export function PublicHeader() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group inline-flex">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/25 group-hover:shadow-amber-500/40 transition-all">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:shadow-emerald-500/40 transition-all">
               <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">Delegator</span>
+            <span className="text-2xl font-bold bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">Delegon</span>
           </Link>
 
           {/* Navigation */}
@@ -68,11 +68,22 @@ export function PublicHeader() {
             {loading ? (
               <div className="w-20 h-10 bg-slate-800 rounded-lg animate-pulse"></div>
             ) : isLoggedIn && user ? (
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
+                {/* Admin Panel Link */}
+                {user.role === 'ADMIN' && (
+                  <Link
+                    href="/admin"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-violet-500 to-violet-600 text-white font-medium rounded-lg hover:from-violet-600 hover:to-violet-700 transition-all shadow-lg shadow-violet-500/25 text-sm"
+                  >
+                    <Shield className="w-4 h-4" />
+                    Админ-панель
+                  </Link>
+                )}
+
                 {/* Dashboard Button */}
                 <Link
                   href="/dashboard"
-                  className="px-5 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-medium rounded-lg hover:from-amber-600 hover:to-amber-700 transition-all shadow-lg shadow-amber-500/25 text-sm sm:text-base"
+                  className="px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-medium rounded-lg hover:from-emerald-400 hover:to-teal-500 transition-all shadow-lg shadow-emerald-500/25 text-sm sm:text-base"
                 >
                   Личный кабинет
                 </Link>
@@ -96,7 +107,7 @@ export function PublicHeader() {
                 </Link>
                 <Link
                   href="/register"
-                  className="px-5 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-medium rounded-lg hover:from-amber-600 hover:to-amber-700 transition-all shadow-lg shadow-amber-500/25 text-sm sm:text-base"
+                  className="px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-medium rounded-lg hover:from-emerald-400 hover:to-teal-500 transition-all shadow-lg shadow-emerald-500/25 text-sm sm:text-base"
                 >
                   Регистрация
                 </Link>

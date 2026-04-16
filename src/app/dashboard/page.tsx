@@ -117,10 +117,10 @@ export default function DashboardPage() {
 
   if (loading || !user) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-900/50 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-600">Загрузка...</p>
+          <p className="text-slate-400">Загрузка...</p>
         </div>
       </div>
     );
@@ -148,7 +148,7 @@ export default function DashboardPage() {
 
   return (
     <DashboardLayout user={user}>
-      <div className="space-y-8 min-h-screen bg-slate-50">
+      <div className="space-y-8 min-h-screen bg-slate-900/50">
         {/* Payment Success Notification */}
         {showPaymentSuccess && (
           <div className="bg-gradient-to-r from-emerald-500/10 to-emerald-600/10 border border-emerald-500/30 rounded-2xl p-6 flex items-center gap-4">
@@ -180,10 +180,10 @@ export default function DashboardPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600 mb-1">Всего задач</p>
-                  <p className="text-3xl font-bold text-slate-900">{stats?.totalTasks || 0}</p>
+                  <p className="text-sm font-medium text-slate-400 mb-1">Всего задач</p>
+                  <p className="text-3xl font-bold text-white">{stats?.totalTasks || 0}</p>
                 </div>
-                <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30">
+                <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/30">
                   <Briefcase className="w-7 h-7 text-white" />
                 </div>
               </div>
@@ -194,7 +194,7 @@ export default function DashboardPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600 mb-1">Завершено</p>
+                  <p className="text-sm font-medium text-slate-400 mb-1">Завершено</p>
                   <p className="text-3xl font-bold text-emerald-600">{stats?.completedTasks || 0}</p>
                 </div>
                 <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/30">
@@ -208,10 +208,10 @@ export default function DashboardPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600 mb-1">В работе</p>
-                  <p className="text-3xl font-bold text-blue-600">{stats?.inProgressTasks || 0}</p>
+                  <p className="text-sm font-medium text-slate-400 mb-1">В работе</p>
+                  <p className="text-3xl font-bold text-cyan-600">{stats?.inProgressTasks || 0}</p>
                 </div>
-                <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30">
+                <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/30">
                   <Clock className="w-7 h-7 text-white" />
                 </div>
               </div>
@@ -258,7 +258,7 @@ export default function DashboardPage() {
           <Card className="lg:col-span-2">
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle>Последние задачи</CardTitle>
-              <Link href="/dashboard/tasks" className="text-amber-600 hover:text-amber-700 text-sm font-medium flex items-center">
+              <Link href="/dashboard/tasks" className="text-emerald-600 hover:text-emerald-700 text-sm font-medium flex items-center">
                 Все задачи
                 <ArrowRight size={16} className="ml-1" />
               </Link>
@@ -274,12 +274,12 @@ export default function DashboardPage() {
                   {tasks.slice(0, 5).map((task) => (
                     <div
                       key={task.id}
-                      className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-slate-50 rounded-lg border border-slate-100 hover:border-slate-300 transition-colors gap-4"
+                      className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-slate-50 rounded-lg border border-slate-700/50 hover:border-slate-600 transition-colors gap-4"
                     >
                       <div className="flex-1 min-w-0">
-                        <h4 className="font-medium text-slate-900 mb-3 truncate">{task.title}</h4>
+                        <h4 className="font-medium text-white mb-3 truncate">{task.title}</h4>
                         <div className="flex flex-col gap-2 text-xs">
-                          <span className="flex items-center gap-2 text-slate-600">
+                          <span className="flex items-center gap-2 text-slate-400">
                             <svg className="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
@@ -287,7 +287,7 @@ export default function DashboardPage() {
                             <span className="font-medium">{formatDateTime(task.createdAt)}</span>
                           </span>
                           {task.status !== 'PENDING' && (
-                            <span className="flex items-center gap-2 text-slate-600">
+                            <span className="flex items-center gap-2 text-slate-400">
                               <svg className="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                               </svg>
@@ -297,11 +297,11 @@ export default function DashboardPage() {
                           )}
                           {task.deadline && (
                             <span className="flex items-center gap-2">
-                              <svg className="w-4 h-4 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                               </svg>
-                              <span className="text-amber-600 font-semibold">Дедлайн:</span>
-                              <span className="text-amber-600 font-semibold">{formatDateTime(task.deadline)}</span>
+                              <span className="text-emerald-600 font-semibold">Дедлайн:</span>
+                              <span className="text-emerald-600 font-semibold">{formatDateTime(task.deadline)}</span>
                             </span>
                           )}
                         </div>
@@ -326,7 +326,7 @@ export default function DashboardPage() {
         {user.role === 'DIRECTOR' && stats && (
           <div className="space-y-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold text-slate-900">Общая статистика</h2>
+              <h2 className="text-xl font-bold text-white">Общая статистика</h2>
               <Link href="/dashboard/statistics" className="text-amber-600 hover:text-amber-700 text-sm font-medium flex items-center">
                 Подробно
                 <ArrowRight size={16} className="ml-1" />
@@ -342,7 +342,7 @@ export default function DashboardPage() {
                       <Award className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-slate-600">Выполнено</p>
+                      <p className="text-sm font-medium text-slate-400">Выполнено</p>
                       <p className="text-2xl font-bold text-emerald-600">
                         {stats.totalTasks > 0 ? Math.round((stats.completedTasks / stats.totalTasks) * 100) : 0}%
                       </p>
@@ -355,12 +355,12 @@ export default function DashboardPage() {
               <Card hover>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30">
+                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/30">
                       <Clock className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-slate-600">В работе</p>
-                      <p className="text-2xl font-bold text-blue-600">{stats.inProgressTasks}</p>
+                      <p className="text-sm font-medium text-slate-400">В работе</p>
+                      <p className="text-2xl font-bold text-cyan-600">{stats.inProgressTasks}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -374,7 +374,7 @@ export default function DashboardPage() {
                       <Target className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-slate-600">Ожидает</p>
+                      <p className="text-sm font-medium text-slate-400">Ожидает</p>
                       <p className="text-2xl font-bold text-amber-600">{stats.pendingTasks}</p>
                     </div>
                   </div>
@@ -389,8 +389,8 @@ export default function DashboardPage() {
                       <Users className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-slate-600">Сотрудников</p>
-                      <p className="text-2xl font-bold text-slate-600">{stats.employeesCount}</p>
+                      <p className="text-sm font-medium text-slate-400">Сотрудников</p>
+                      <p className="text-2xl font-bold text-slate-400">{stats.employeesCount}</p>
                     </div>
                   </div>
                 </CardContent>

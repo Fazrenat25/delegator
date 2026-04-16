@@ -10,12 +10,12 @@ interface BadgeProps {
 
 export function Badge({ children, variant = 'default', size = 'md', className }: BadgeProps) {
   const variants = {
-    default: 'bg-slate-100 text-slate-700 border-slate-200',
-    success: 'bg-emerald-100 text-emerald-700 border-emerald-200',
-    warning: 'bg-amber-100 text-amber-700 border-amber-200',
-    danger: 'bg-red-100 text-red-700 border-red-200',
-    info: 'bg-blue-100 text-blue-700 border-blue-200',
-    premium: 'bg-gradient-to-r from-amber-500 to-amber-600 text-white border-amber-700',
+    default: 'bg-slate-700/50 text-slate-300 border-slate-600 backdrop-blur-sm',
+    success: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30 backdrop-blur-sm',
+    warning: 'bg-amber-500/20 text-amber-400 border-amber-500/30 backdrop-blur-sm',
+    danger: 'bg-red-500/20 text-red-400 border-red-500/30 backdrop-blur-sm',
+    info: 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30 backdrop-blur-sm',
+    premium: 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white border-emerald-700 shadow-lg shadow-emerald-500/25',
   };
 
   const sizes = {
@@ -26,7 +26,7 @@ export function Badge({ children, variant = 'default', size = 'md', className }:
   return (
     <span
       className={cn(
-        'inline-flex items-center font-medium rounded-full border',
+        'inline-flex items-center font-medium rounded-full border transition-all duration-200',
         variants[variant],
         sizes[size],
         className
