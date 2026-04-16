@@ -274,34 +274,34 @@ export default function DashboardPage() {
                   {tasks.slice(0, 5).map((task) => (
                     <div
                       key={task.id}
-                      className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-slate-50 rounded-lg border border-slate-700/50 hover:border-slate-600 transition-colors gap-4"
+                      className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-slate-800/40 rounded-lg border border-slate-700/30 hover:border-emerald-500/20 hover:shadow-lg hover:shadow-emerald-500/5 transition-all duration-300 gap-4"
                     >
                       <div className="flex-1 min-w-0">
                         <h4 className="font-medium text-white mb-3 truncate">{task.title}</h4>
                         <div className="flex flex-col gap-2 text-xs">
                           <span className="flex items-center gap-2 text-slate-400">
-                            <svg className="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg className="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                             <span className="text-slate-500">Создано:</span>
-                            <span className="font-medium">{formatDateTime(task.createdAt)}</span>
+                            <span className="font-medium text-slate-300">{formatDateTime(task.createdAt)}</span>
                           </span>
                           {task.status !== 'PENDING' && (
                             <span className="flex items-center gap-2 text-slate-400">
-                              <svg className="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <svg className="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                               </svg>
                               <span className="text-slate-500">В работе:</span>
-                              <span className="font-medium">{formatDateTime(task.updatedAt)}</span>
+                              <span className="font-medium text-slate-300">{formatDateTime(task.updatedAt)}</span>
                             </span>
                           )}
                           {task.deadline && (
                             <span className="flex items-center gap-2">
-                              <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <svg className="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                               </svg>
-                              <span className="text-emerald-600 font-semibold">Дедлайн:</span>
-                              <span className="text-emerald-600 font-semibold">{formatDateTime(task.deadline)}</span>
+                              <span className="text-slate-400">Дедлайн:</span>
+                              <span className="text-emerald-400 font-semibold">{formatDateTime(task.deadline)}</span>
                             </span>
                           )}
                         </div>
@@ -327,7 +327,7 @@ export default function DashboardPage() {
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-bold text-white">Общая статистика</h2>
-              <Link href="/dashboard/statistics" className="text-amber-600 hover:text-amber-700 text-sm font-medium flex items-center">
+              <Link href="/dashboard/statistics" className="text-emerald-600 hover:text-emerald-700 text-sm font-medium flex items-center">
                 Подробно
                 <ArrowRight size={16} className="ml-1" />
               </Link>
