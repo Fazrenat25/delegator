@@ -192,10 +192,10 @@ export default function SupportTicketsPage() {
 
   if (loading || !user) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-900/50 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-600">Загрузка...</p>
+          <p className="text-slate-400">Загрузка...</p>
         </div>
       </div>
     );
@@ -209,7 +209,7 @@ export default function SupportTicketsPage() {
     <DashboardLayout user={user}>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">Ваши обращения</h1>
+          <h1 className="text-3xl font-bold text-white mb-2">Ваши обращения</h1>
           <p className="text-slate-500">Обращения в техническую поддержку</p>
         </div>
 
@@ -218,7 +218,7 @@ export default function SupportTicketsPage() {
             <div className="flex items-center gap-3">
               <AlertCircle className="w-8 h-8 text-emerald-400" />
               <div>
-                <p className="text-2xl font-bold text-slate-900">{openCount}</p>
+                <p className="text-2xl font-bold text-white">{openCount}</p>
                 <p className="text-xs text-emerald-400">Открыто</p>
               </div>
             </div>
@@ -227,7 +227,7 @@ export default function SupportTicketsPage() {
             <div className="flex items-center gap-3">
               <Clock className="w-8 h-8 text-blue-400" />
               <div>
-                <p className="text-2xl font-bold text-slate-900">{inProgressCount}</p>
+                <p className="text-2xl font-bold text-white">{inProgressCount}</p>
                 <p className="text-xs text-blue-400">В работе</p>
               </div>
             </div>
@@ -236,7 +236,7 @@ export default function SupportTicketsPage() {
             <div className="flex items-center gap-3">
               <CheckCircle className="w-8 h-8 text-slate-400" />
               <div>
-                <p className="text-2xl font-bold text-slate-900">{closedCount}</p>
+                <p className="text-2xl font-bold text-white">{closedCount}</p>
                 <p className="text-xs text-slate-400">Закрыто</p>
               </div>
             </div>
@@ -245,9 +245,9 @@ export default function SupportTicketsPage() {
 
         <div className="grid lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2">
-            <div className="rounded-2xl border border-slate-200 bg-white shadow-sm">
-              <div className="p-6 border-b border-slate-200">
-                <h2 className="text-lg font-bold text-slate-900">История обращений</h2>
+            <div className="rounded-2xl border border-slate-700/50 bg-slate-800/50 backdrop-blur-sm shadow-sm">
+              <div className="p-6 border-b border-slate-700/50">
+                <h2 className="text-lg font-bold text-white">История обращений</h2>
               </div>
               <div className="divide-y divide-slate-100">
                 {loading ? (
@@ -273,8 +273,8 @@ export default function SupportTicketsPage() {
                         key={thread.id}
                         onClick={() => setSelectedThread(selectedThread?.id === thread.id ? null : thread)}
                         className={`p-4 cursor-pointer transition-colors ${
-                          selectedThread?.id === thread.id ? 'bg-slate-50' : 'hover:bg-slate-50'
-                        } ${isClosed && !isExpanded ? 'border-l-4 border-slate-400 bg-slate-50/50' : ''}`}
+                          selectedThread?.id === thread.id ? 'bg-slate-900/50' : 'hover:bg-slate-900/50'
+                        } ${isClosed && !isExpanded ? 'border-l-4 border-slate-400 bg-slate-800/50' : ''}`}
                       >
                         <div className="flex items-start justify-between gap-4">
                           <div className="flex-1">
@@ -298,7 +298,7 @@ export default function SupportTicketsPage() {
                                     e.stopPropagation();
                                     toggleThread(thread.id);
                                   }}
-                                  className="text-xs text-slate-500 hover:text-slate-700 flex items-center gap-1 ml-auto"
+                                  className="text-xs text-slate-500 hover:text-slate-300 flex items-center gap-1 ml-auto"
                                 >
                                   {isExpanded ? (
                                     <>
@@ -320,12 +320,12 @@ export default function SupportTicketsPage() {
                             </div>
                             
                             {isClosed && !isExpanded ? (
-                              <div className="flex items-center gap-3 p-3 bg-slate-100 border border-slate-200 rounded-lg">
+                              <div className="flex items-center gap-3 p-3 bg-slate-800/50 border border-slate-700/50 rounded-lg">
                                 <div className="w-8 h-8 rounded-full bg-slate-300 flex items-center justify-center flex-shrink-0">
                                   <CheckCircle className="w-4 h-4 text-slate-500" />
                                 </div>
                                 <div className="flex-1">
-                                  <p className="text-sm font-medium text-slate-700">Обращение закрыто</p>
+                                  <p className="text-sm font-medium text-slate-300">Обращение закрыто</p>
                                   <p className="text-xs text-slate-500">Нажмите "Развернуть" чтобы просмотреть переписку</p>
                                 </div>
                               </div>
@@ -341,7 +341,7 @@ export default function SupportTicketsPage() {
                                     <div className="flex-1">
                                       <div className="bg-amber-50 border border-amber-200 rounded-lg rounded-tl-none p-3">
                                         <p className="text-xs text-amber-600 font-semibold mb-1">Вы</p>
-                                        <p className="text-slate-900 text-sm">{thread.message}</p>
+                                        <p className="text-white text-sm">{thread.message}</p>
                                       </div>
                                     </div>
                                   </div>
@@ -358,7 +358,7 @@ export default function SupportTicketsPage() {
                                           <div className="flex-1">
                                             <div className="bg-violet-50 border border-violet-200 rounded-lg rounded-tl-none p-3">
                                               <p className="text-xs text-violet-600 font-semibold mb-1">Поддержка</p>
-                                              <p className="text-slate-900 text-sm">{reply.message}</p>
+                                              <p className="text-white text-sm">{reply.message}</p>
                                               <p className="text-xs text-slate-500 mt-1">
                                                 {new Date(reply.createdAt).toLocaleDateString('ru-RU', {
                                                   day: 'numeric',
@@ -380,7 +380,7 @@ export default function SupportTicketsPage() {
                                           <div className="flex-1">
                                             <div className="bg-amber-50 border border-amber-200 rounded-lg rounded-tl-none p-3">
                                               <p className="text-xs text-amber-600 font-semibold mb-1">Вы</p>
-                                              <p className="text-slate-900 text-sm">{reply.message}</p>
+                                              <p className="text-white text-sm">{reply.message}</p>
                                               <p className="text-xs text-slate-500 mt-1">
                                                 {new Date(reply.createdAt).toLocaleDateString('ru-RU', {
                                                   day: 'numeric',
@@ -405,7 +405,7 @@ export default function SupportTicketsPage() {
                                         onChange={(e) => setReplyToReply(e.target.value)}
                                         placeholder="Ваш ответ..."
                                         rows={3}
-                                        className="w-full px-3 py-2 bg-white border border-amber-300 rounded-lg text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 mb-2"
+                                        className="w-full px-3 py-2 bg-slate-800/50 backdrop-blur-sm border border-amber-300 rounded-lg text-white text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 mb-2"
                                       />
                                       <div className="flex items-center gap-2">
                                         <button
@@ -430,7 +430,7 @@ export default function SupportTicketsPage() {
                                             setReplyToReply('');
                                             setReplyingToId(null);
                                           }}
-                                          className="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-semibold rounded-lg transition-colors"
+                                          className="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-300 text-xs font-semibold rounded-lg transition-colors"
                                         >
                                           Отмена
                                         </button>
@@ -471,8 +471,8 @@ export default function SupportTicketsPage() {
           </div>
 
           <div className="lg:col-span-1">
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sticky top-6">
-              <h2 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+            <div className="rounded-2xl border border-slate-700/50 bg-slate-800/50 backdrop-blur-sm p-6 shadow-sm sticky top-6">
+              <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                 <MessageCircle className="w-5 h-5 text-amber-500" />
                 Создать новое обращение
               </h2>
@@ -482,7 +482,7 @@ export default function SupportTicketsPage() {
                   onChange={(e) => setNewMessage(e.target.value)}
                   placeholder="Опишите вашу проблему или вопрос..."
                   rows={4}
-                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all resize-none mb-4"
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-700/50 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all resize-none mb-4"
                   required
                 />
                 <button

@@ -18,6 +18,9 @@ import {
   Shield,
   ChevronRight,
   MessageCircle,
+  Globe,
+  ArrowLeft,
+  Database,
 } from 'lucide-react';
 
 interface AdminLayoutProps {
@@ -31,7 +34,12 @@ const navigation = [
   { name: 'Тарифы', href: '/admin/subscriptions', icon: CreditCard },
   { name: 'Задачи', href: '/admin/tasks', icon: CheckSquare },
   { name: 'Сообщения', href: '/admin/support', icon: MessageCircle },
+  { name: 'Бэкапы', href: '/admin/backups', icon: Database },
   { name: 'Настройки', href: '/admin/settings', icon: Settings },
+];
+
+const siteLinks = [
+  { name: 'На сайт', href: '/', icon: Globe },
 ];
 
 export default function AdminLayout({ children }: AdminLayoutProps) {
@@ -108,7 +116,17 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         </nav>
 
         {/* Sidebar footer */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-slate-800">
+        <div className="absolute bottom-0 left-0 right-0 p-4 space-y-2 border-t border-slate-800">
+          {siteLinks.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className="flex items-center gap-3 px-4 py-3 rounded-xl text-emerald-400 hover:bg-emerald-500/10 hover:text-emerald-300 transition-all"
+            >
+              <item.icon className="w-5 h-5" />
+              <span className="font-medium">{item.name}</span>
+            </Link>
+          ))}
           <button
             onClick={handleLogout}
             className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-all"
@@ -132,10 +150,17 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
             </button>
             <div className="hidden lg:block">
               <h1 className="text-2xl font-bold text-white">Панель администратора</h1>
-              <p className="text-slate-400 text-sm">Управление системой Delegator</p>
+              <p className="text-slate-400 text-sm">Управление системой Delegon</p>
             </div>
             <div className="flex items-center gap-4">
               <ThemeToggle />
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded-xl hover:bg-emerald-500/20 hover:text-emerald-300 transition-all text-sm font-medium"
+              >
+                <Globe className="w-4 h-4" />
+                На сайт
+              </Link>
               <div className="flex items-center gap-3 px-4 py-2 bg-slate-800/50 rounded-xl border border-slate-700">
                 <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center">
                   <Shield className="w-4 h-4 text-white" />

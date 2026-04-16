@@ -58,6 +58,35 @@ export default function ChatPage() {
   const [generalRoomId, setGeneralRoomId] = useState<string | null>(null);
   const [unreadCounts, setUnreadCounts] = useState<Record<string, number>>({});
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const audioContextRef = useRef<AudioContext | null>(null);
+  const prevUnreadCountsRef = useRef<Record<string, number>>({});
+
+  // Функция воспроизведения звука
+  const playNotificationSound = () => {
+    try {
+      if (!audioContextRef.current) {
+        audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+      }
+      const ctx = audioContextRef.current;
+      if (ctx.state === 'suspended') {
+        ctx.resume();
+      }
+      const oscillator = ctx.createOscillator();
+      const gainNode = ctx.createGain();
+      oscillator.connect(gainNode);
+      gainNode.connect(ctx.destination);
+      oscillator.type = 'sine';
+      oscillator.frequency.setValueAtTime(880, ctx.currentTime);
+      oscillator.frequency.setValueAtTime(1100, ctx.currentTime + 0.12);
+      oscillator.frequency.setValueAtTime(880, ctx.currentTime + 0.24);
+      gainNode.gain.setValueAtTime(0.3, ctx.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.45);
+      oscillator.start(ctx.currentTime);
+      oscillator.stop(ctx.currentTime + 0.45);
+    } catch (e) {
+      console.error('Error playing notification sound:', e);
+    }
+  };
 
   useEffect(() => {
     async function loadData() {
@@ -124,6 +153,22 @@ export default function ChatPage() {
 
     return () => clearInterval(interval);
   }, [generalRoomId, selectedUserId]);
+
+  // Отслеживание новых непрочитанных сообщений для звукового уведомления
+  useEffect(() => {
+    const prev = prevUnreadCountsRef.current;
+
+    for (const [key, count] of Object.entries(unreadCounts)) {
+      const prevCount = prev[key] || 0;
+      // Если счётчик непрочитанных увеличился — воспроизводим звук
+      if (count > prevCount) {
+        playNotificationSound();
+        break;
+      }
+    }
+
+    prevUnreadCountsRef.current = { ...unreadCounts };
+  }, [unreadCounts]);
 
   // Polling для непрочитанных сообщений (каждые 3 секунды)
   useEffect(() => {
@@ -250,10 +295,10 @@ export default function ChatPage() {
 
   if (loading || !user) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-900/50 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-600">Загрузка чата...</p>
+          <p className="text-slate-400">Загрузка чата...</p>
         </div>
       </div>
     );
@@ -261,8 +306,8 @@ export default function ChatPage() {
 
   if (!generalRoomId) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <div className="text-center text-slate-600">
+      <div className="min-h-screen bg-slate-900/50 flex items-center justify-center">
+        <div className="text-center text-slate-400">
           <p className="text-lg mb-4">Не удалось загрузить общую комнату</p>
           <Button onClick={() => window.location.reload()}>Обновить страницу</Button>
         </div>
@@ -276,8 +321,8 @@ export default function ChatPage() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 h-full">
           {/* Sidebar - список сотрудников */}
           <Card className="lg:col-span-1 flex flex-col h-full overflow-hidden">
-            <div className="p-4 border-b border-slate-200 bg-slate-50">
-              <h2 className="font-semibold text-slate-900 flex items-center gap-2">
+            <div className="p-4 border-b border-slate-700/50 bg-slate-900/50">
+              <h2 className="font-semibold text-white flex items-center gap-2">
                 <Users className="w-5 h-5 text-amber-500" />
                 Чаты
               </h2>
@@ -286,7 +331,7 @@ export default function ChatPage() {
             {/* Общий чат */}
             <button
               onClick={handleBackToGeneral}
-              className={`w-full p-4 flex items-center gap-3 hover:bg-slate-50 transition-colors border-b border-slate-100 ${
+              className={`w-full p-4 flex items-center gap-3 hover:bg-slate-700/50 transition-colors border-b border-slate-700/50 ${
                 !selectedUserId ? 'bg-amber-50 border-amber-200' : ''
               }`}
             >
@@ -294,7 +339,7 @@ export default function ChatPage() {
                 <MessageSquare className="w-5 h-5 text-white" />
               </div>
               <div className="text-left">
-                <p className="font-medium text-slate-900">Общий чат</p>
+                <p className="font-medium text-white">Общий чат</p>
                 <p className="text-xs text-slate-500">Все сотрудники</p>
               </div>
             </button>
@@ -310,7 +355,7 @@ export default function ChatPage() {
                   <button
                     key={employee.id}
                     onClick={() => handleSelectUser(employee)}
-                    className={`w-full p-3 flex items-center gap-3 hover:bg-slate-50 transition-colors relative ${
+                    className={`w-full p-3 flex items-center gap-3 hover:bg-slate-700/50 transition-colors relative ${
                       selectedUserId === employee.id ? 'bg-amber-50' : ''
                     }`}
                   >
@@ -318,7 +363,7 @@ export default function ChatPage() {
                       {employee.firstName[0]}{employee.lastName[0]}
                     </div>
                     <div className="text-left flex-1 min-w-0">
-                      <p className="font-medium text-slate-900 truncate">
+                      <p className="font-medium text-white truncate">
                         {employee.firstName} {employee.lastName}
                       </p>
                       <p className="text-xs text-slate-500 truncate">
@@ -339,7 +384,7 @@ export default function ChatPage() {
           {/* Chat area */}
           <Card className="lg:col-span-3 flex flex-col h-full overflow-hidden">
             {/* Chat header */}
-            <div className="p-4 border-b border-slate-200 bg-slate-50 flex items-center gap-3">
+            <div className="p-4 border-b border-slate-700/50 bg-slate-900/50 flex items-center gap-3">
               {selectedUser && (
                 <Button variant="ghost" size="sm" onClick={handleBackToGeneral} className="lg:hidden">
                   <ArrowLeft size={16} />
@@ -359,7 +404,7 @@ export default function ChatPage() {
                 )}
               </div>
               <div>
-                <h3 className="font-semibold text-slate-900">
+                <h3 className="font-semibold text-white">
                   {selectedUser ? `${selectedUser.firstName} ${selectedUser.lastName}` : 'Общий чат'}
                 </h3>
                 <p className="text-xs text-slate-500">
@@ -369,7 +414,7 @@ export default function ChatPage() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50">
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-800/50">
               {messages.length === 0 ? (
                 <div className="text-center py-12 text-slate-500">
                   <MessageSquare className="w-12 h-12 mx-auto mb-3 opacity-30" />
@@ -396,7 +441,7 @@ export default function ChatPage() {
                           className={`px-4 py-2 rounded-2xl ${
                             isOwn
                               ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-br-md'
-                              : 'bg-white border border-slate-200 text-slate-900 rounded-bl-md'
+                              : 'bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 text-white rounded-bl-md'
                           }`}
                         >
                           <p className="text-sm whitespace-pre-wrap break-words">{message.content}</p>
@@ -416,7 +461,7 @@ export default function ChatPage() {
             </div>
 
             {/* Message input */}
-            <div className="p-4 border-t border-slate-200 bg-white">
+            <div className="p-4 border-t border-slate-700/50 bg-white">
               <form onSubmit={handleSendMessage} className="flex items-center gap-3">
                 <Input
                   value={messageContent}

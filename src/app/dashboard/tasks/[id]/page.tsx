@@ -124,10 +124,10 @@ export default function TaskDetailPage() {
 
   if (loading || !user) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-900/50 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-600">Загрузка...</p>
+          <p className="text-slate-400">Загрузка...</p>
         </div>
       </div>
     );
@@ -138,7 +138,7 @@ export default function TaskDetailPage() {
       <DashboardLayout user={user}>
         <div className="text-center py-12">
           <AlertCircle className="w-16 h-16 mx-auto mb-4 text-slate-400" />
-          <h2 className="text-2xl font-bold text-slate-900 mb-2">Задача не найдена</h2>
+          <h2 className="text-2xl font-bold text-white mb-2">Задача не найдена</h2>
           <Button onClick={() => router.back()}>
             <ArrowLeft size={16} className="mr-2" />
             Назад
@@ -157,7 +157,7 @@ export default function TaskDetailPage() {
             <ArrowLeft size={16} className="mr-2" />
             Назад
           </Button>
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Задача #{task.id.slice(-6)}</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-white">Задача #{task.id.slice(-6)}</h1>
         </div>
 
         {/* Task Details */}
@@ -185,8 +185,8 @@ export default function TaskDetailPage() {
                 </div>
 
                 <div className="prose max-w-none">
-                  <h3 className="text-lg font-semibold text-slate-900 mb-2">Описание</h3>
-                  <p className="text-slate-600 whitespace-pre-wrap">{task.description}</p>
+                  <h3 className="text-lg font-semibold text-white mb-2">Описание</h3>
+                  <p className="text-slate-400 whitespace-pre-wrap">{task.description}</p>
                 </div>
               </CardContent>
             </Card>
@@ -242,7 +242,7 @@ export default function TaskDetailPage() {
                   <User className="w-4 h-4 text-slate-400" />
                   <div>
                     <p className="text-slate-500">Создано</p>
-                    <p className="font-medium text-slate-900">
+                    <p className="font-medium text-white">
                       {task.createdBy.firstName} {task.createdBy.lastName}
                     </p>
                   </div>
@@ -253,7 +253,7 @@ export default function TaskDetailPage() {
                     <User className="w-4 h-4 text-slate-400" />
                     <div>
                       <p className="text-slate-500">Исполнитель</p>
-                      <p className="font-medium text-slate-900">
+                      <p className="font-medium text-white">
                         {task.assignedTo.firstName} {task.assignedTo.lastName}
                       </p>
                     </div>
@@ -264,7 +264,7 @@ export default function TaskDetailPage() {
                   <Calendar className="w-4 h-4 text-slate-400" />
                   <div>
                     <p className="text-slate-500">Дата создания</p>
-                    <p className="font-medium text-slate-900">
+                    <p className="font-medium text-white">
                       {formatDateTime(task.createdAt)}
                     </p>
                   </div>
@@ -274,7 +274,7 @@ export default function TaskDetailPage() {
                   <Clock className="w-4 h-4 text-slate-400" />
                   <div>
                     <p className="text-slate-500">Последнее обновление</p>
-                    <p className="font-medium text-slate-900">
+                    <p className="font-medium text-white">
                       {formatDateTime(task.updatedAt)}
                     </p>
                   </div>

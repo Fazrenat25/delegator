@@ -241,11 +241,11 @@ export function DashboardLayout({ children, user }: DashboardLayoutProps) {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-slate-50">
+      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       {/* Mobile sidebar backdrop */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/50 lg:hidden"
+          className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
@@ -258,8 +258,8 @@ export function DashboardLayout({ children, user }: DashboardLayoutProps) {
       {/* Collapse toggle button - only show on lg screens */}
       <button
         onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-        className={`hidden lg:flex fixed z-50 w-6 h-6 items-center justify-center bg-white border-2 border-slate-200 rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all shadow-md hover:shadow-lg`}
-        style={{ 
+        className={`hidden lg:flex fixed z-50 w-6 h-6 items-center justify-center bg-slate-800 border-2 border-slate-700 rounded-full text-slate-300 hover:text-white hover:bg-slate-700 transition-all shadow-md hover:shadow-lg`}
+        style={{
           left: sidebarCollapsed ? '92px' : '280px',
           top: '40px',
           transform: 'translateX(-50%)',
@@ -272,20 +272,20 @@ export function DashboardLayout({ children, user }: DashboardLayoutProps) {
       {/* Main Content */}
       <main className={`${sidebarCollapsed ? 'lg:ml-20' : 'lg:ml-72'} min-h-screen`}>
         {/* Top Bar */}
-        <header className="sticky top-0 z-30 bg-white border-b border-slate-200" style={{ height: '73px' }}>
+        <header className="sticky top-0 z-30 bg-slate-800/50 backdrop-blur-sm border-b border-slate-700/50" style={{ height: '73px' }}>
           <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-full">
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="lg:hidden p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors"
+                className="lg:hidden p-2 text-slate-300 hover:text-white hover:bg-slate-700/50 rounded-lg transition-colors"
               >
                 {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
               </button>
               <div>
-                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-900">
+                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white">
                   {user.role === 'DIRECTOR' ? 'Панель директора' : 'Панель сотрудника'}
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-500 hidden sm:block">
+                <p className="text-xs sm:text-sm text-slate-400 hidden sm:block">
                   Добро пожаловать, {user.firstName}!
                 </p>
               </div>
@@ -299,23 +299,23 @@ export function DashboardLayout({ children, user }: DashboardLayoutProps) {
               <div ref={notificationsRef} className="relative">
                 <button
                   onClick={() => setShowNotifications(!showNotifications)}
-                  className="relative p-2 text-slate-400 hover:text-slate-600 transition-colors"
+                  className="relative p-2 text-slate-300 hover:text-white transition-colors"
                 >
                   <Bell size={20} />
                   {unreadCount > 0 && (
-                    <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+                    <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-slate-800"></span>
                   )}
                 </button>
 
                 {/* Notifications Dropdown */}
                 {showNotifications && (
-                  <div className="absolute right-0 mt-2 w-80 sm:w-96 bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden z-50">
-                    <div className="px-4 py-3 border-b border-slate-200 flex items-center justify-between">
-                      <h3 className="font-semibold text-slate-900">Уведомления</h3>
+                  <div className="absolute right-0 mt-2 w-80 sm:w-96 bg-slate-800/95 backdrop-blur-sm rounded-xl shadow-2xl border border-slate-700/50 overflow-hidden z-50">
+                    <div className="px-4 py-3 border-b border-slate-700/50 flex items-center justify-between">
+                      <h3 className="font-semibold text-white">Уведомления</h3>
                       {unreadCount > 0 && (
                         <button
                           onClick={() => handleNotificationClick()}
-                          className="text-xs text-amber-600 hover:text-amber-700 font-medium"
+                          className="text-xs text-amber-400 hover:text-amber-300 font-medium"
                         >
                           Прочитать все
                         </button>
@@ -323,7 +323,7 @@ export function DashboardLayout({ children, user }: DashboardLayoutProps) {
                     </div>
                     <div className="max-h-96 overflow-y-auto">
                       {notifications.length === 0 ? (
-                        <div className="px-4 py-8 text-center text-slate-500 text-sm">
+                        <div className="px-4 py-8 text-center text-slate-400 text-sm">
                           Нет уведомлений
                         </div>
                       ) : (
@@ -331,18 +331,18 @@ export function DashboardLayout({ children, user }: DashboardLayoutProps) {
                           <div
                             key={notification.id}
                             onClick={() => handleNotificationNavigate(notification)}
-                            className={`px-4 py-3 border-b border-slate-100 hover:bg-slate-50 cursor-pointer transition-colors ${
-                              !notification.read ? 'bg-amber-50/50' : ''
+                            className={`px-4 py-3 border-b border-slate-700/50 hover:bg-slate-700/50 cursor-pointer transition-colors ${
+                              !notification.read ? 'bg-amber-500/10' : ''
                             }`}
                           >
                             <div className="flex items-start gap-3">
                               <span className="text-xl">{getNotificationIcon(notification.type)}</span>
                               <div className="flex-1 min-w-0">
-                                <p className={`text-sm ${!notification.read ? 'font-semibold text-slate-900' : 'text-slate-700'}`}>
+                                <p className={`text-sm ${!notification.read ? 'font-semibold text-white' : 'text-slate-300'}`}>
                                   {notification.title}
                                 </p>
-                                <p className="text-xs text-slate-500 mt-1">{notification.message}</p>
-                                <p className="text-xs text-slate-400 mt-2">
+                                <p className="text-xs text-slate-400 mt-1">{notification.message}</p>
+                                <p className="text-xs text-slate-500 mt-2">
                                   {formatNotificationTime(notification.createdAt)}
                                 </p>
                               </div>
@@ -364,7 +364,7 @@ export function DashboardLayout({ children, user }: DashboardLayoutProps) {
               </Button>
               <button
                 onClick={handleLogout}
-                className="sm:hidden p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors"
+                className="sm:hidden p-2 text-slate-300 hover:text-white hover:bg-slate-700/50 rounded-lg transition-colors"
               >
                 <LogOut size={20} />
               </button>

@@ -1,2 +1,18 @@
 @import 'tailwindcss';
-@import './theme.css';
+@import './tokens.css';
+
+/* Global overrides */
+* {
+  box-sizing: border-box;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better text rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

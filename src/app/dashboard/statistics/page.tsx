@@ -273,7 +273,7 @@ export default function StatisticsPage() {
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
             <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-slate-600">Загрузка статистики...</p>
+            <p className="text-slate-400">Загрузка статистики...</p>
           </div>
         </div>
       </DashboardLayout>
@@ -285,7 +285,7 @@ export default function StatisticsPage() {
       <div className="space-y-8">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">Статистика и аналитика</h1>
+          <h1 className="text-3xl font-bold text-white mb-2">Статистика и аналитика</h1>
           <p className="text-slate-500">Подробная аналитика по задачам и сотрудникам</p>
         </div>
 
@@ -328,8 +328,8 @@ export default function StatisticsPage() {
         {/* Performance Metrics */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2">
-            <Card className="border-slate-200 shadow-lg">
-              <CardHeader className="border-b border-slate-100">
+            <Card className="border-slate-700/50 shadow-lg">
+              <CardHeader className="border-b border-slate-700/50">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/25">
@@ -349,8 +349,8 @@ export default function StatisticsPage() {
           </div>
 
           <div>
-            <Card className="border-slate-200 shadow-lg h-full">
-              <CardHeader className="border-b border-slate-100">
+            <Card className="border-slate-700/50 shadow-lg h-full">
+              <CardHeader className="border-b border-slate-700/50">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/25">
                     <Timer className="w-5 h-5 text-white" />
@@ -392,8 +392,8 @@ export default function StatisticsPage() {
         </div>
 
         {/* Department Stats */}
-        <Card className="border-slate-200 shadow-lg">
-          <CardHeader className="border-b border-slate-100">
+        <Card className="border-slate-700/50 shadow-lg">
+          <CardHeader className="border-b border-slate-700/50">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center shadow-lg shadow-violet-500/25">
                 <BarChart3 className="w-5 h-5 text-white" />
@@ -409,15 +409,15 @@ export default function StatisticsPage() {
               {stats?.departmentStats.map((dept, index) => (
                 <div
                   key={index}
-                  className="p-4 rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 hover:shadow-md transition-all"
+                  className="p-4 rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-700/50 hover:shadow-md transition-all"
                 >
                   <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${dept.color} flex items-center justify-center mb-3 shadow-lg`}>
                     <Briefcase className="w-5 h-5 text-white" />
                   </div>
-                  <p className="text-sm font-semibold text-slate-700 mb-2">{dept.name}</p>
+                  <p className="text-sm font-semibold text-slate-300 mb-2">{dept.name}</p>
                   <div className="flex items-end justify-between">
                     <div>
-                      <p className="text-2xl font-bold text-slate-900">{dept.tasks}</p>
+                      <p className="text-2xl font-bold text-white">{dept.tasks}</p>
                       <p className="text-xs text-slate-500">задач</p>
                     </div>
                     <div className="text-right">
@@ -434,8 +434,8 @@ export default function StatisticsPage() {
         {/* Priority & Top Employees */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Priority Distribution */}
-          <Card className="border-slate-200 shadow-lg">
-            <CardHeader className="border-b border-slate-100">
+          <Card className="border-slate-700/50 shadow-lg">
+            <CardHeader className="border-b border-slate-700/50">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/25">
                   <PieChart className="w-5 h-5 text-white" />
@@ -457,8 +457,8 @@ export default function StatisticsPage() {
           </Card>
 
           {/* Top Employees */}
-          <Card className="border-slate-200 shadow-lg">
-            <CardHeader className="border-b border-slate-100">
+          <Card className="border-slate-700/50 shadow-lg">
+            <CardHeader className="border-b border-slate-700/50">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/25">
                   <Award className="w-5 h-5 text-white" />
@@ -477,13 +477,13 @@ export default function StatisticsPage() {
                   stats?.topEmployees.map((employee, index) => (
                     <div
                       key={index}
-                      className="flex items-center gap-4 p-3 rounded-xl bg-slate-50 hover:bg-slate-100 transition-all"
+                      className="flex items-center gap-4 p-3 rounded-xl bg-slate-50 hover:bg-slate-700/50 transition-all"
                     >
                       <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-slate-400 to-slate-600 text-white font-bold text-sm">
                         {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : index + 1}
                       </div>
                       <div className="flex-1">
-                        <p className="font-semibold text-slate-900">{employee.name}</p>
+                        <p className="font-semibold text-white">{employee.name}</p>
                         <p className="text-xs text-slate-500">{employee.completedTasks} задач завершено</p>
                       </div>
                       {index < 3 && (
@@ -518,7 +518,7 @@ function StatCard({
   trendUp: boolean;
 }) {
   return (
-    <Card className="border-slate-200 shadow-lg hover:shadow-xl transition-all">
+    <Card className="border-slate-700/50 shadow-lg hover:shadow-xl transition-all">
       <CardContent className="p-6">
         <div className="flex items-center justify-between mb-4">
           <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center shadow-lg`}>
@@ -529,7 +529,7 @@ function StatCard({
             {trend}%
           </div>
         </div>
-        <p className="text-3xl font-bold text-slate-900 mb-1">{value}</p>
+        <p className="text-3xl font-bold text-white mb-1">{value}</p>
         <p className="text-sm text-slate-500">{title}</p>
       </CardContent>
     </Card>
@@ -549,12 +549,12 @@ function MetricRow({
   color: string;
 }) {
   return (
-    <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50">
+    <div className="flex items-center justify-between p-3 rounded-xl bg-slate-900/50">
       <div className="flex items-center gap-3">
         <Icon className={`w-5 h-5 ${color}`} />
-        <span className="text-sm font-medium text-slate-700">{label}</span>
+        <span className="text-sm font-medium text-slate-300">{label}</span>
       </div>
-      <span className="text-lg font-bold text-slate-900">{value}</span>
+      <span className="text-lg font-bold text-white">{value}</span>
     </div>
   );
 }
@@ -584,14 +584,14 @@ function WeeklyChart({ data }: { data: Array<{ day: string; completed: number; c
           </div>
         ))}
       </div>
-      <div className="flex items-center justify-center gap-6 pt-4 border-t border-slate-100">
+      <div className="flex items-center justify-center gap-6 pt-4 border-t border-slate-700/50">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-blue-500 rounded-sm" />
-          <span className="text-xs text-slate-600">Завершено</span>
+          <span className="text-xs text-slate-400">Завершено</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-amber-500 rounded-sm" />
-          <span className="text-xs text-slate-600">Создано</span>
+          <span className="text-xs text-slate-400">Создано</span>
         </div>
       </div>
     </div>
@@ -605,10 +605,10 @@ function PriorityBar({ label, value, total, color }: { label: string; value: num
   return (
     <div>
       <div className="flex items-center justify-between mb-2">
-        <span className="text-sm font-medium text-slate-700">{label}</span>
-        <span className="text-sm font-bold text-slate-900">{value} ({percentage}%)</span>
+        <span className="text-sm font-medium text-slate-300">{label}</span>
+        <span className="text-sm font-bold text-white">{value} ({percentage}%)</span>
       </div>
-      <div className="w-full h-3 bg-slate-100 rounded-full overflow-hidden">
+      <div className="w-full h-3 bg-slate-800/50 rounded-full overflow-hidden">
         <div
           className={`h-full ${color} transition-all duration-500`}
           style={{ width: `${percentage}%` }}
@@ -628,7 +628,7 @@ function CardHeader({ children, className }: { children: React.ReactNode; classN
 }
 
 function CardTitle({ children, className }: { children: React.ReactNode; className?: string }) {
-  return <h3 className={`text-base font-bold text-slate-900 ${className || ''}`}>{children}</h3>;
+  return <h3 className={`text-base font-bold text-white ${className || ''}`}>{children}</h3>;
 }
 
 function CardContent({ children, className }: { children: React.ReactNode; className?: string }) {

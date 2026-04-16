@@ -9,7 +9,7 @@ export async function POST() {
   // Очищаем cookie с токеном
   response.cookies.set('token', '', {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure: false, // HTTP without SSL
     sameSite: 'lax',
     maxAge: 0,
     path: '/',

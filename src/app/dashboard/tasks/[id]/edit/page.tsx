@@ -136,10 +136,10 @@ export default function EditTaskPage() {
 
   if (loading || !user || !task) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-900/50 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-600">Загрузка...</p>
+          <p className="text-slate-400">Загрузка...</p>
         </div>
       </div>
     );
@@ -154,7 +154,7 @@ export default function EditTaskPage() {
             <ArrowLeft size={16} className="mr-2" />
             Назад
           </Button>
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Редактировать задачу</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-white">Редактировать задачу</h1>
         </div>
 
         {/* Form */}
@@ -172,7 +172,7 @@ export default function EditTaskPage() {
               />
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                <label className="block text-sm font-medium text-slate-300 mb-1.5">
                   Описание
                 </label>
                 <textarea
@@ -180,7 +180,7 @@ export default function EditTaskPage() {
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   placeholder="Подробное описание задачи..."
                   rows={5}
-                  className="w-full px-4 py-2.5 text-slate-900 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-500 transition-all resize-none"
+                  className="w-full px-4 py-2.5 text-white bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500 transition-all resize-none"
                   required
                 />
               </div>

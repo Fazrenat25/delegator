@@ -181,6 +181,21 @@ model SupportMessageReply {
   @@index([createdAt])
 }
 
+model DatabaseBackup {
+  id         String   @id @default(cuid())
+  filename   String   @unique
+  filesize   Int      // в байтах
+  createdAt  DateTime @default(now())
+  status     BackupStatus @default(COMPLETED)
+  note       String?
+}
+
+enum BackupStatus {
+  COMPLETED
+  RESTORING
+  FAILED
+}
+
 enum SupportMessageStatus {
   OPEN
   IN_PROGRESS

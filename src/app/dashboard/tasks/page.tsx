@@ -201,10 +201,10 @@ export default function TasksPage() {
 
   if (loading || !user) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-900/50 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-600">Загрузка...</p>
+          <p className="text-slate-400">Загрузка...</p>
         </div>
       </div>
     );
@@ -216,7 +216,7 @@ export default function TasksPage() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">Задачи</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">Задачи</h1>
             <p className="text-sm sm:text-base text-slate-500">Управление и распределение задач</p>
           </div>
           {user.role === 'DIRECTOR' && (
@@ -286,12 +286,12 @@ export default function TasksPage() {
                 {filteredTasks.map((task) => (
                   <div
                     key={task.id}
-                    className="p-5 bg-slate-50 rounded-xl border border-slate-100 hover:border-slate-300 hover:shadow-md transition-all"
+                    className="p-5 bg-slate-50 rounded-xl border border-slate-700/50 hover:border-slate-600 hover:shadow-md transition-all"
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
-                          <h3 className="text-lg font-semibold text-slate-900">{task.title}</h3>
+                          <h3 className="text-lg font-semibold text-white">{task.title}</h3>
                           <Badge
                             variant={task.priority === 'URGENT' ? 'danger' : task.priority === 'HIGH' ? 'warning' : 'info'}
                             size="sm"
@@ -299,7 +299,7 @@ export default function TasksPage() {
                             {getPriorityLabel(task.priority)}
                           </Badge>
                         </div>
-                        <p className="text-slate-600 mb-3">{task.description}</p>
+                        <p className="text-slate-400 mb-3">{task.description}</p>
                         <div className="flex items-center gap-4 text-sm text-slate-500">
                           <span>
                             <strong>Создатель:</strong> {task.createdBy.firstName} {task.createdBy.lastName}
@@ -373,14 +373,14 @@ export default function TasksPage() {
                   required
                 />
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                  <label className="block text-sm font-medium text-slate-300 mb-1.5">
                     Описание
                   </label>
                   <textarea
                     value={newTask.description}
                     onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
                     rows={4}
-                    className="w-full px-4 py-2.5 text-slate-900 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-500"
+                    className="w-full px-4 py-2.5 text-white bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500"
                     required
                   />
                 </div>

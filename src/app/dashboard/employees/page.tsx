@@ -281,10 +281,10 @@ export default function EmployeesPage() {
 
   if (loading || !user) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-900/50 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-600">Загрузка...</p>
+          <p className="text-slate-400">Загрузка...</p>
         </div>
       </div>
     );
@@ -296,7 +296,7 @@ export default function EmployeesPage() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">Сотрудники</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">Сотрудники</h1>
             <p className="text-sm sm:text-base text-slate-500">Управление командой вашей компании</p>
           </div>
           <Button onClick={() => setShowAddModal(true)} variant="primary">
@@ -311,8 +311,8 @@ export default function EmployeesPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600 mb-1">Всего сотрудников</p>
-                  <p className="text-3xl font-bold text-slate-900">{employees.length}</p>
+                  <p className="text-sm font-medium text-slate-400 mb-1">Всего сотрудников</p>
+                  <p className="text-3xl font-bold text-white">{employees.length}</p>
                 </div>
                 <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30">
                   <UserPlus className="w-7 h-7 text-white" />
@@ -325,7 +325,7 @@ export default function EmployeesPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600 mb-1">Активных</p>
+                  <p className="text-sm font-medium text-slate-400 mb-1">Активных</p>
                   <p className="text-3xl font-bold text-emerald-600">{employees.length}</p>
                 </div>
                 <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/30">
@@ -341,7 +341,7 @@ export default function EmployeesPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600 mb-1">Новых за месяц</p>
+                  <p className="text-sm font-medium text-slate-400 mb-1">Новых за месяц</p>
                   <p className="text-3xl font-bold text-amber-600">
                     {employees.filter(e => new Date(e.createdAt).getMonth() === new Date().getMonth()).length}
                   </p>
@@ -389,7 +389,7 @@ export default function EmployeesPage() {
                 {filteredEmployees.map((employee) => (
                   <div
                     key={employee.id}
-                    className="p-5 bg-slate-50 rounded-xl border border-slate-100 hover:border-slate-300 hover:shadow-md transition-all"
+                    className="p-5 bg-slate-50 rounded-xl border border-slate-700/50 hover:border-slate-600 hover:shadow-md transition-all"
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-3">
@@ -397,7 +397,7 @@ export default function EmployeesPage() {
                           {employee.firstName[0]}{employee.lastName[0]}
                         </div>
                         <div>
-                          <h3 className="font-semibold text-slate-900">
+                          <h3 className="font-semibold text-white">
                             {employee.firstName} {employee.lastName}
                           </h3>
                           <Badge variant="default" size="sm">{getPositionLabel(employee.position)}</Badge>
@@ -447,13 +447,13 @@ export default function EmployeesPage() {
                     </button>
                     
                     <div className="space-y-2 mb-4">
-                      <div className="flex items-center gap-2 text-sm text-slate-600">
+                      <div className="flex items-center gap-2 text-sm text-slate-400">
                         <svg className="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                         {employee.username}
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-slate-600">
+                      <div className="flex items-center gap-2 text-sm text-slate-400">
                         <svg className="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
@@ -525,8 +525,8 @@ export default function EmployeesPage() {
                     { value: 'INTERN', label: 'Стажер' },
                   ]}
                 />
-                <div className="p-3 bg-slate-100 rounded-lg border border-slate-200">
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                <div className="p-3 bg-slate-800/50 rounded-lg border border-slate-700/50">
+                  <label className="block text-sm font-medium text-slate-300 mb-1.5">
                     Логин
                   </label>
                   <p className="text-sm text-slate-500">
@@ -623,11 +623,11 @@ export default function EmployeesPage() {
                     { value: 'INTERN', label: 'Стажер' },
                   ]}
                 />
-                <div className="p-3 bg-slate-100 rounded-lg border border-slate-200">
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                <div className="p-3 bg-slate-800/50 rounded-lg border border-slate-700/50">
+                  <label className="block text-sm font-medium text-slate-300 mb-1.5">
                     Логин
                   </label>
-                  <p className="text-sm text-slate-600 font-mono">
+                  <p className="text-sm text-slate-400 font-mono">
                     {editingEmployee.username}
                   </p>
                   <p className="text-xs text-slate-400 mt-1">Логин нельзя изменить</p>

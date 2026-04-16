@@ -122,10 +122,10 @@ export default function EmployeeStatisticsPage() {
 
   if (loading || !user || !employee || !stats) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-900/50 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-600">Загрузка статистики...</p>
+          <p className="text-slate-400">Загрузка статистики...</p>
         </div>
       </div>
     );
@@ -157,7 +157,7 @@ export default function EmployeeStatisticsPage() {
             Назад
           </Button>
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">
+            <h1 className="text-2xl sm:text-3xl font-bold text-white">
               Статистика: {employee.firstName} {employee.lastName}
             </h1>
             <p className="text-sm text-slate-500">
@@ -172,8 +172,8 @@ export default function EmployeeStatisticsPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600 mb-1">Всего задач</p>
-                  <p className="text-3xl font-bold text-slate-900">{stats.totalTasks}</p>
+                  <p className="text-sm font-medium text-slate-400 mb-1">Всего задач</p>
+                  <p className="text-3xl font-bold text-white">{stats.totalTasks}</p>
                 </div>
                 <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30">
                   <Briefcase className="w-7 h-7 text-white" />
@@ -186,7 +186,7 @@ export default function EmployeeStatisticsPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600 mb-1">Выполнено</p>
+                  <p className="text-sm font-medium text-slate-400 mb-1">Выполнено</p>
                   <p className="text-3xl font-bold text-emerald-600">{stats.completedTasks}</p>
                 </div>
                 <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/30">
@@ -200,7 +200,7 @@ export default function EmployeeStatisticsPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600 mb-1">В работе</p>
+                  <p className="text-sm font-medium text-slate-400 mb-1">В работе</p>
                   <p className="text-3xl font-bold text-blue-600">{stats.inProgressTasks}</p>
                 </div>
                 <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30">
@@ -214,7 +214,7 @@ export default function EmployeeStatisticsPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600 mb-1">Процент выполнения</p>
+                  <p className="text-sm font-medium text-slate-400 mb-1">Процент выполнения</p>
                   <p className="text-3xl font-bold text-amber-600">{stats.completionRate}%</p>
                 </div>
                 <div className="w-14 h-14 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30">
@@ -239,35 +239,35 @@ export default function EmployeeStatisticsPage() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-3 h-3 rounded-full bg-slate-400"></div>
-                    <span className="text-sm text-slate-600">В ожидании</span>
+                    <span className="text-sm text-slate-400">В ожидании</span>
                   </div>
-                  <span className="text-lg font-bold text-slate-900">{stats.pendingTasks}</span>
+                  <span className="text-lg font-bold text-white">{stats.pendingTasks}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                    <span className="text-sm text-slate-600">В работе</span>
+                    <span className="text-sm text-slate-400">В работе</span>
                   </div>
-                  <span className="text-lg font-bold text-slate-900">{stats.inProgressTasks}</span>
+                  <span className="text-lg font-bold text-white">{stats.inProgressTasks}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
-                    <span className="text-sm text-slate-600">Завершено</span>
+                    <span className="text-sm text-slate-400">Завершено</span>
                   </div>
-                  <span className="text-lg font-bold text-slate-900">{stats.completedTasks}</span>
+                  <span className="text-lg font-bold text-white">{stats.completedTasks}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                    <span className="text-sm text-slate-600">Отменено</span>
+                    <span className="text-sm text-slate-400">Отменено</span>
                   </div>
-                  <span className="text-lg font-bold text-slate-900">{stats.cancelledTasks}</span>
+                  <span className="text-lg font-bold text-white">{stats.cancelledTasks}</span>
                 </div>
               </div>
 
               {/* Progress bar */}
-              <div className="mt-6 h-3 bg-slate-100 rounded-full overflow-hidden flex">
+              <div className="mt-6 h-3 bg-slate-800/50 rounded-full overflow-hidden flex">
                 {stats.totalTasks > 0 && (
                   <>
                     <div 
@@ -344,10 +344,10 @@ export default function EmployeeStatisticsPage() {
                 {stats.recentTasks.map((task) => (
                   <div
                     key={task.id}
-                    className="flex items-center justify-between p-4 bg-slate-50 rounded-lg border border-slate-100"
+                    className="flex items-center justify-between p-4 bg-slate-50 rounded-lg border border-slate-700/50"
                   >
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-medium text-slate-900 mb-1 truncate">{task.title}</h4>
+                      <h4 className="font-medium text-white mb-1 truncate">{task.title}</h4>
                       <div className="flex items-center gap-3 text-xs text-slate-500">
                         <span>{formatDate(task.createdAt)}</span>
                       </div>

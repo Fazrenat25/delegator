@@ -151,10 +151,10 @@ export default function SettingsPage() {
 
   if (loading || !user) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-900/50 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-600">Загрузка...</p>
+          <p className="text-slate-400">Загрузка...</p>
         </div>
       </div>
     );
@@ -165,7 +165,7 @@ export default function SettingsPage() {
       <div className="space-y-6">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">Настройки</h1>
+          <h1 className="text-3xl font-bold text-white mb-2">Настройки</h1>
           <p className="text-slate-500">Управление профилем и параметрами системы</p>
         </div>
 
@@ -182,11 +182,11 @@ export default function SettingsPage() {
             <CardContent>
               <div className="space-y-5">
                 {/* Avatar + Role */}
-                <div className="flex flex-col items-center p-4 bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl border border-slate-200">
+                <div className="flex flex-col items-center p-4 bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl border border-slate-700/50">
                   <div className="w-20 h-20 rounded-full bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-amber-500/25 mb-3">
                     {user.firstName[0]}{user.lastName[0]}
                   </div>
-                  <p className="font-semibold text-slate-900 text-center">
+                  <p className="font-semibold text-white text-center">
                     {user.firstName} {user.lastName}
                   </p>
                   <Badge variant={user.role === 'DIRECTOR' ? 'premium' : 'default'} size="sm" className="mt-2">
@@ -202,7 +202,7 @@ export default function SettingsPage() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-xs text-slate-500 font-medium uppercase tracking-wide">Логин</p>
-                      <p className="font-semibold text-slate-900 truncate">{user.username}</p>
+                      <p className="font-semibold text-white truncate">{user.username}</p>
                     </div>
                   </div>
 
@@ -212,7 +212,7 @@ export default function SettingsPage() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-xs text-slate-500 font-medium uppercase tracking-wide">Email</p>
-                      <p className="font-medium text-slate-700 truncate text-sm">{user.email || 'Не указан'}</p>
+                      <p className="font-medium text-slate-300 truncate text-sm">{user.email || 'Не указан'}</p>
                     </div>
                   </div>
 
@@ -222,7 +222,7 @@ export default function SettingsPage() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-xs text-slate-500 font-medium uppercase tracking-wide">ID пользователя</p>
-                      <p className="font-mono text-slate-600 text-sm truncate">{user.id}</p>
+                      <p className="font-mono text-slate-400 text-sm truncate">{user.id}</p>
                     </div>
                   </div>
                 </div>
@@ -328,7 +328,7 @@ export default function SettingsPage() {
           <CardContent className="space-y-4">
             <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
               <div>
-                <p className="font-medium text-slate-900">Email уведомления</p>
+                <p className="font-medium text-white">Email уведомления</p>
                 <p className="text-sm text-slate-500">Получать уведомления на email</p>
               </div>
               <button
@@ -338,7 +338,7 @@ export default function SettingsPage() {
                 }`}
               >
                 <span
-                  className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${
+                  className={`absolute top-1 w-4 h-4 bg-slate-800/50 backdrop-blur-sm rounded-full transition-transform ${
                     notifications.emailNotifications ? 'left-7' : 'left-1'
                   }`}
                 />
@@ -347,7 +347,7 @@ export default function SettingsPage() {
 
             <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
               <div>
-                <p className="font-medium text-slate-900">Уведомления о задачах</p>
+                <p className="font-medium text-white">Уведомления о задачах</p>
                 <p className="text-sm text-slate-500">Новые задачи и изменения статуса</p>
               </div>
               <button
@@ -357,7 +357,7 @@ export default function SettingsPage() {
                 }`}
               >
                 <span
-                  className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${
+                  className={`absolute top-1 w-4 h-4 bg-slate-800/50 backdrop-blur-sm rounded-full transition-transform ${
                     notifications.taskNotifications ? 'left-7' : 'left-1'
                   }`}
                 />
@@ -366,7 +366,7 @@ export default function SettingsPage() {
 
             <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
               <div>
-                <p className="font-medium text-slate-900">Напоминания о дедлайнах</p>
+                <p className="font-medium text-white">Напоминания о дедлайнах</p>
                 <p className="text-sm text-slate-500">Уведомления о приближающихся сроках</p>
               </div>
               <button
@@ -376,7 +376,7 @@ export default function SettingsPage() {
                 }`}
               >
                 <span
-                  className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${
+                  className={`absolute top-1 w-4 h-4 bg-slate-800/50 backdrop-blur-sm rounded-full transition-transform ${
                     notifications.deadlineNotifications ? 'left-7' : 'left-1'
                   }`}
                 />
@@ -397,14 +397,14 @@ export default function SettingsPage() {
             <div className="space-y-4">
               <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
                 <div>
-                  <p className="font-medium text-slate-900">Тёмная тема</p>
+                  <p className="font-medium text-white">Тёмная тема</p>
                   <p className="text-sm text-slate-500">Использовать тёмную тему оформления</p>
                 </div>
                 <Badge variant="default" size="sm">Скоро</Badge>
               </div>
               <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
                 <div>
-                  <p className="font-medium text-slate-900">Компактный режим</p>
+                  <p className="font-medium text-white">Компактный режим</p>
                   <p className="text-sm text-slate-500">Уменьшить размеры элементов</p>
                 </div>
                 <Badge variant="default" size="sm">Скоро</Badge>

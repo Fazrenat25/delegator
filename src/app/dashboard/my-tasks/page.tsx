@@ -104,10 +104,10 @@ export default function MyTasksPage() {
 
   if (loading || !user) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-900/50 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-600">Загрузка...</p>
+          <p className="text-slate-400">Загрузка...</p>
         </div>
       </div>
     );
@@ -118,7 +118,7 @@ export default function MyTasksPage() {
       <div className="space-y-6">
         {/* Header */}
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">Мои задачи</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">Мои задачи</h1>
           <p className="text-sm sm:text-base text-slate-500">Задачи, назначенные вам</p>
         </div>
 
@@ -128,8 +128,8 @@ export default function MyTasksPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600 mb-1">Всего</p>
-                  <p className="text-3xl font-bold text-slate-900">{stats.total}</p>
+                  <p className="text-sm font-medium text-slate-400 mb-1">Всего</p>
+                  <p className="text-3xl font-bold text-white">{stats.total}</p>
                 </div>
                 <div className="w-14 h-14 bg-gradient-to-br from-slate-500 to-slate-600 rounded-xl flex items-center justify-center shadow-lg shadow-slate-500/30">
                   <Filter className="w-7 h-7 text-white" />
@@ -142,7 +142,7 @@ export default function MyTasksPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600 mb-1">В ожидании</p>
+                  <p className="text-sm font-medium text-slate-400 mb-1">В ожидании</p>
                   <p className="text-3xl font-bold text-amber-600">{stats.pending}</p>
                 </div>
                 <div className="w-14 h-14 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30">
@@ -156,7 +156,7 @@ export default function MyTasksPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600 mb-1">В работе</p>
+                  <p className="text-sm font-medium text-slate-400 mb-1">В работе</p>
                   <p className="text-3xl font-bold text-blue-600">{stats.inProgress}</p>
                 </div>
                 <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30">
@@ -170,7 +170,7 @@ export default function MyTasksPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600 mb-1">Выполнено</p>
+                  <p className="text-sm font-medium text-slate-400 mb-1">Выполнено</p>
                   <p className="text-3xl font-bold text-emerald-600">{stats.completed}</p>
                 </div>
                 <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/30">
@@ -198,7 +198,7 @@ export default function MyTasksPage() {
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
-                  className="px-4 py-2.5 text-slate-900 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-200"
+                  className="px-4 py-2.5 text-white bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500/30"
                 >
                   <option value="all">Все статусы</option>
                   <option value="PENDING">В ожидании</option>
@@ -229,12 +229,12 @@ export default function MyTasksPage() {
                 {filteredTasks.map((task) => (
                   <div
                     key={task.id}
-                    className="p-5 bg-slate-50 rounded-xl border border-slate-100 hover:border-slate-300 hover:shadow-md transition-all"
+                    className="p-5 bg-slate-50 rounded-xl border border-slate-700/50 hover:border-slate-600 hover:shadow-md transition-all"
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex-1">
-                        <h3 className="font-semibold text-slate-900 mb-2">{task.title}</h3>
-                        <p className="text-sm text-slate-600 mb-3">{task.description}</p>
+                        <h3 className="font-semibold text-white mb-2">{task.title}</h3>
+                        <p className="text-sm text-slate-400 mb-3">{task.description}</p>
                         <div className="flex items-center gap-3">
                           <Badge variant={getStatusBadgeVariant(task.status)} size="sm">
                             {task.status === 'PENDING' && 'В ожидании'}
@@ -263,7 +263,7 @@ export default function MyTasksPage() {
                         </Link>
                       </Button>
                     </div>
-                    <div className="flex items-center justify-between text-sm text-slate-500 pt-3 border-t border-slate-200">
+                    <div className="flex items-center justify-between text-sm text-slate-500 pt-3 border-t border-slate-700/50">
                       <span>Создано: {formatDate(task.createdAt)}</span>
                       <span>От: {task.createdBy.firstName} {task.createdBy.lastName}</span>
                     </div>

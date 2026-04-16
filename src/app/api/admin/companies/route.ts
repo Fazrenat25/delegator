@@ -56,9 +56,9 @@ export async function GET(request: NextRequest) {
     });
 
     // Добавляем информацию о тарифе для каждой компании
-    const companiesWithPlan = companies.map(company => {
+    const companiesWithPlan = companies.map((company: any) => {
       // Находим директора компании
-      const director = company.users.find(u => u.role === 'DIRECTOR');
+      const director = company.users.find((u: any) => u.role === 'DIRECTOR');
       const subscription = director?.subscription;
       
       return {
