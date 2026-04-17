@@ -840,8 +840,12 @@ export default function HomePageClient() {
           )}
 
           <div
-            className="bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative"
+            className="bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative scrollbar-thin scrollbar-thumb-emerald-500/50 scrollbar-track-slate-800/50 hover:scrollbar-thumb-emerald-500/70"
             onClick={(e) => e.stopPropagation()}
+            style={{
+              scrollbarWidth: 'thin',
+              scrollbarColor: 'rgba(16, 185, 129, 0.5) rgba(30, 41, 59, 0.5)'
+            }}
           >
             {/* Close button */}
             <button
