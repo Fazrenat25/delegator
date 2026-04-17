@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 export function YandexMetrika() {
   return (
     <>
@@ -32,27 +34,50 @@ export function YandexMetrika() {
 }
 
 export function YandexMetrikaInformer() {
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function checkRole() {
+      try {
+        const response = await fetch('/api/auth/session');
+        const data = await response.json();
+        if (data.success && data.data.user.role === 'ADMIN') {
+          setIsAdmin(true);
+        }
+      } catch (error) {
+        console.error('Error checking role:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    checkRole();
+  }, []);
+
   return (
     <div className="flex flex-col items-center gap-4 py-8">
       <p className="text-slate-400">&copy; 2026 Delegon. Все права защищены.</p>
 
-      {/* Yandex.Metrika informer */}
-      <a
-        href="https://metrika.yandex.ru/stat/?id=108584080&amp;from=informer"
-        target="_blank"
-        rel="nofollow"
-        className="opacity-70 hover:opacity-100 transition-opacity"
-      >
-        <img
-          src="https://informer.yandex.ru/informer/108584080/3_0_FFFFFFFF_EFEFEFFF_0_pageviews"
-          style={{ width: '88px', height: '31px', border: 0 }}
-          alt="Яндекс.Метрика"
-          title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)"
-          className="ym-advanced-informer"
-          data-cid="108584080"
-          data-lang="ru"
-        />
-      </a>
+      {/* Yandex.Metrika informer - только для администратора */}
+      {!loading && isAdmin && (
+        <a
+          href="https://metrika.yandex.ru/stat/?id=108584080&amp;from=informer"
+          target="_blank"
+          rel="nofollow"
+          className="opacity-70 hover:opacity-100 transition-opacity"
+        >
+          <img
+            src="https://informer.yandex.ru/informer/108584080/3_0_FFFFFFFF_EFEFEFFF_0_pageviews"
+            style={{ width: '88px', height: '31px', border: 0 }}
+            alt="Яндекс.Метрика"
+            title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)"
+            className="ym-advanced-informer"
+            data-cid="108584080"
+            data-lang="ru"
+          />
+        </a>
+      )}
     </div>
   );
 }
