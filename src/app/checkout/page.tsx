@@ -43,16 +43,37 @@ export default function CheckoutPage() {
     e.preventDefault();
     setLoading(true);
 
-    // Имитация обработки платежа
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      // Имитация обработки платежа
+      await new Promise(resolve => setTimeout(resolve, 2000));
 
-    // Сохраняем тариф
-    if (planType) {
-      localStorage.setItem('currentPlan', planType);
+      // Обновляем тариф на сервере
+      if (planType) {
+        const response = await fetch('/api/subscription', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            plan: planType,
+            period: annual ? 'YEARLY' : 'MONTHLY'
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!data.success) {
+          alert('Ошибка обновления тарифа: ' + data.error);
+          setLoading(false);
+          return;
+        }
+      }
+
+      setLoading(false);
+      router.push('/dashboard?payment=success');
+    } catch (error) {
+      console.error('Payment error:', error);
+      alert('Ошибка обработки платежа');
+      setLoading(false);
     }
-
-    setLoading(false);
-    router.push('/dashboard?payment=success');
   };
 
   if (!plan) {
