@@ -46,7 +46,7 @@ export async function createNotificationsForDirectors({
 
   // Создаём уведомление для каждого директора
   const notifications = await Promise.all(
-    directors.map((director) =>
+    directors.map((director: any) =>
       createNotification({
         userId: director.id,
         type,
