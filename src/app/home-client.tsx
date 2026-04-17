@@ -122,10 +122,10 @@ export default function HomePageClient() {
                 </>
               ) : (
                 <Link
-                  href="/dashboard"
+                  href={userRole === 'ADMIN' ? '/admin' : '/dashboard'}
                   className="group inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold rounded-xl hover:from-emerald-400 hover:to-teal-500 transition-all duration-300 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5 hover:scale-[1.02]"
                 >
-                  Перейти в панель управления
+                  {userRole === 'ADMIN' ? 'Перейти в панель Администратора' : 'Перейти в личный кабинет'}
                   <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
                 </Link>
               )}
@@ -574,10 +574,10 @@ export default function HomePageClient() {
             </Link>
           ) : (
             <Link
-              href="/dashboard"
+              href={userRole === 'ADMIN' ? '/admin' : '/dashboard'}
               className="group inline-flex items-center justify-center px-8 py-4 bg-white text-emerald-700 font-semibold rounded-xl hover:bg-slate-100 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 hover:scale-[1.02]"
             >
-              Перейти в панель управления
+              {userRole === 'ADMIN' ? 'Перейти в панель Администратора' : 'Перейти в личный кабинет'}
               <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
             </Link>
           )}
