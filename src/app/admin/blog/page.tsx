@@ -18,6 +18,7 @@ export default function AdminBlogPage() {
   const [showModal, setShowModal] = useState(false);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [isHtml, setIsHtml] = useState(false);
   const [creating, setCreating] = useState(false);
 
   useEffect(() => {
@@ -55,6 +56,7 @@ export default function AdminBlogPage() {
       if (data.success) {
         setTitle('');
         setContent('');
+        setIsHtml(false);
         setShowModal(false);
         loadPosts();
       } else {
@@ -127,7 +129,10 @@ export default function AdminBlogPage() {
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1">
                   <h3 className="text-xl font-bold text-white mb-2">{post.title}</h3>
-                  <p className="text-slate-300 mb-4 line-clamp-3">{post.content}</p>
+                  <div
+                    className="text-slate-300 mb-4 line-clamp-3 prose prose-invert prose-sm max-w-none"
+                    dangerouslySetInnerHTML={{ __html: post.content }}
+                  />
                   <p className="text-sm text-slate-500">
                     {new Date(post.createdAt).toLocaleDateString('ru-RU', {
                       day: 'numeric',
@@ -182,17 +187,33 @@ export default function AdminBlogPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
-                    Текст
-                  </label>
+                  <div className="flex items-center justify-between mb-2">
+                    <label className="block text-sm font-medium text-slate-300">
+                      Текст
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={isHtml}
+                        onChange={(e) => setIsHtml(e.target.checked)}
+                        className="w-4 h-4 rounded border-slate-700 bg-slate-800 text-emerald-500 focus:ring-emerald-500/50"
+                      />
+                      <span className="text-sm text-slate-400">HTML формат</span>
+                    </label>
+                  </div>
                   <textarea
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
-                    placeholder="Введите текст поста"
+                    placeholder={isHtml ? "Введите HTML код поста" : "Введите текст поста"}
                     rows={8}
-                    className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all resize-none"
+                    className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all resize-none font-mono text-sm"
                     required
                   />
+                  {isHtml && (
+                    <p className="text-xs text-slate-500 mt-2">
+                      Используйте HTML теги для форматирования текста
+                    </p>
+                  )}
                 </div>
 
                 <div className="flex gap-3">

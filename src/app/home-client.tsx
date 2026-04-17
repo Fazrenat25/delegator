@@ -592,9 +592,10 @@ export default function HomePageClient() {
                   <h3 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
                     {post.title}
                   </h3>
-                  <p className="text-slate-300 mb-4 line-clamp-3">
-                    {post.content}
-                  </p>
+                  <div
+                    className="text-slate-300 mb-4 line-clamp-3 prose prose-invert prose-sm max-w-none"
+                    dangerouslySetInnerHTML={{ __html: post.content }}
+                  />
                   <p className="text-sm text-slate-500">
                     {new Date(post.createdAt).toLocaleDateString('ru-RU', {
                       day: 'numeric',
