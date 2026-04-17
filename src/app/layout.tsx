@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SupportForm } from "@/components/layout/SupportForm";
+import { YandexMetrika } from "@/components/YandexMetrika";
 import "./globals.css";
 
 const SITE_URL = "https://delegon.ru";
@@ -128,6 +129,7 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         {children}
         <SupportForm />
+        <YandexMetrika />
       </body>
     </html>
   );

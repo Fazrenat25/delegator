@@ -1,6 +1,7 @@
 'use client';
 
 import { PublicHeader } from '@/components/layout/PublicHeader';
+import { YandexMetrikaInformer } from '@/components/YandexMetrika';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle, Users, Clock, BarChart3 } from 'lucide-react';
 
@@ -103,56 +104,11 @@ export default function KontrolPage() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-slate-950 text-slate-400 py-12 border-t border-slate-800 mt-16">
+      <footer className="bg-slate-950 text-slate-400 border-t border-slate-800 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p>&copy; 2026 Delegon. Все права защищены.</p>
-
-            {/* Yandex.Metrika informer */}
-            <a
-              href="https://metrika.yandex.ru/stat/?id=108584080&amp;from=informer"
-              target="_blank"
-              rel="nofollow"
-              className="opacity-70 hover:opacity-100 transition-opacity"
-            >
-              <img
-                src="https://informer.yandex.ru/informer/108584080/3_0_FFFFFFFF_EFEFEFFF_0_pageviews"
-                style={{ width: '88px', height: '31px', border: 0 }}
-                alt="Яндекс.Метрика"
-                title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)"
-                className="ym-advanced-informer"
-                data-cid="108584080"
-                data-lang="ru"
-              />
-            </a>
-          </div>
+          <YandexMetrikaInformer />
         </div>
       </footer>
-
-      {/* Yandex.Metrika counter */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            (function(m,e,t,r,i,k,a){
-              m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-              m[i].l=1*new Date();
-              for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-              k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-            })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108584080', 'ym');
-
-            ym(108584080, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-          `,
-        }}
-      />
-      <noscript>
-        <div>
-          <img
-            src="https://mc.yandex.ru/watch/108584080"
-            style={{ position: 'absolute', left: '-9999px' }}
-            alt=""
-          />
-        </div>
-      </noscript>
     </div>
   );
 }

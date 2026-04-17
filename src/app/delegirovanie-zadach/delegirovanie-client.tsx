@@ -1,6 +1,7 @@
 'use client';
 
 import { PublicHeader } from '@/components/layout/PublicHeader';
+import { YandexMetrikaInformer } from '@/components/YandexMetrika';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle, Users, Target, BarChart3 } from 'lucide-react';
 
@@ -103,29 +104,9 @@ export default function DelegirovaniePage() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-slate-950 text-slate-400 py-12 border-t border-slate-800 mt-16">
+      <footer className="bg-slate-950 text-slate-400 border-t border-slate-800 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p>&copy; 2026 Delegon. Все права защищены.</p>
-
-            {/* Yandex.Metrika informer */}
-            <a
-              href="https://metrika.yandex.ru/stat/?id=108584080&amp;from=informer"
-              target="_blank"
-              rel="nofollow"
-              className="opacity-70 hover:opacity-100 transition-opacity"
-            >
-              <img
-                src="https://informer.yandex.ru/informer/108584080/3_0_FFFFFFFF_EFEFEFFF_0_pageviews"
-                style={{ width: '88px', height: '31px', border: 0 }}
-                alt="Яндекс.Метрика"
-                title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)"
-                className="ym-advanced-informer"
-                data-cid="108584080"
-                data-lang="ru"
-              />
-            </a>
-          </div>
+          <YandexMetrikaInformer />
         </div>
       </footer>
 
