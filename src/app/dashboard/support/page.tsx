@@ -175,7 +175,7 @@ export default function SupportTicketsPage() {
   const statusColors: Record<string, string> = {
     OPEN: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
     IN_PROGRESS: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
-    CLOSED: 'bg-slate-500/10 text-slate-400 border-slate-500/30',
+    CLOSED: 'bg-slate-800/400/10 text-slate-400 border-slate-500/30',
   };
 
   const statusLabels: Record<string, string> = {
@@ -194,7 +194,7 @@ export default function SupportTicketsPage() {
     return (
       <div className="min-h-screen bg-slate-900/50 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-slate-400">Загрузка...</p>
         </div>
       </div>
@@ -232,7 +232,7 @@ export default function SupportTicketsPage() {
               </div>
             </div>
           </div>
-          <div className="rounded-xl border border-slate-500/30 bg-slate-500/10 backdrop-blur-sm p-4">
+          <div className="rounded-xl border border-slate-500/30 bg-slate-800/400/10 backdrop-blur-sm p-4">
             <div className="flex items-center gap-3">
               <CheckCircle className="w-8 h-8 text-slate-400" />
               <div>
@@ -253,7 +253,7 @@ export default function SupportTicketsPage() {
                 {loading ? (
                   <div className="py-12 text-center text-slate-400">
                     <div className="flex items-center justify-center gap-3">
-                      <div className="w-6 h-6 border-2 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
+                      <div className="w-6 h-6 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
                       Загрузка...
                     </div>
                   </div>
@@ -333,14 +333,14 @@ export default function SupportTicketsPage() {
                               <>
                                 <div className="space-y-3">
                                   <div className="flex items-start gap-3">
-                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center flex-shrink-0">
+                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center flex-shrink-0">
                                       <span className="text-xs font-bold text-white">
                                         {user.firstName[0]}
                                       </span>
                                     </div>
                                     <div className="flex-1">
                                       <div className="bg-amber-50 border border-amber-200 rounded-lg rounded-tl-none p-3">
-                                        <p className="text-xs text-amber-600 font-semibold mb-1">Вы</p>
+                                        <p className="text-xs text-cyan-600 font-semibold mb-1">Вы</p>
                                         <p className="text-white text-sm">{thread.message}</p>
                                       </div>
                                     </div>
@@ -372,14 +372,14 @@ export default function SupportTicketsPage() {
                                         </>
                                       ) : (
                                         <>
-                                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center flex-shrink-0">
+                                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center flex-shrink-0">
                                             <span className="text-xs font-bold text-white">
                                               {user.firstName[0]}
                                             </span>
                                           </div>
                                           <div className="flex-1">
                                             <div className="bg-amber-50 border border-amber-200 rounded-lg rounded-tl-none p-3">
-                                              <p className="text-xs text-amber-600 font-semibold mb-1">Вы</p>
+                                              <p className="text-xs text-cyan-600 font-semibold mb-1">Вы</p>
                                               <p className="text-white text-sm">{reply.message}</p>
                                               <p className="text-xs text-slate-500 mt-1">
                                                 {new Date(reply.createdAt).toLocaleDateString('ru-RU', {
@@ -405,7 +405,7 @@ export default function SupportTicketsPage() {
                                         onChange={(e) => setReplyToReply(e.target.value)}
                                         placeholder="Ваш ответ..."
                                         rows={3}
-                                        className="w-full px-3 py-2 bg-slate-800/50 backdrop-blur-sm border border-amber-300 rounded-lg text-white text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 mb-2"
+                                        className="w-full px-3 py-2 bg-slate-800/50 backdrop-blur-sm border border-amber-300 rounded-lg text-white text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 mb-2"
                                       />
                                       <div className="flex items-center gap-2">
                                         <button
@@ -442,7 +442,7 @@ export default function SupportTicketsPage() {
                                         e.stopPropagation();
                                         setReplyingToId(thread.id);
                                       }}
-                                      className="mt-3 ml-11 text-xs text-amber-600 hover:text-amber-700 font-semibold flex items-center gap-1"
+                                      className="mt-3 ml-11 text-xs text-cyan-600 hover:text-amber-700 font-semibold flex items-center gap-1"
                                     >
                                       <MessageCircle className="w-3 h-3" />
                                       Продолжить обращение
@@ -482,13 +482,13 @@ export default function SupportTicketsPage() {
                   onChange={(e) => setNewMessage(e.target.value)}
                   placeholder="Опишите вашу проблему или вопрос..."
                   rows={4}
-                  className="w-full px-4 py-3 bg-slate-50 border border-slate-700/50 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all resize-none mb-4"
+                  className="w-full px-4 py-3 bg-slate-800/40 border border-slate-700/50 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all resize-none mb-4"
                   required
                 />
                 <button
                   type="submit"
                   disabled={sending || !newMessage.trim()}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-semibold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg shadow-amber-500/25"
+                  className="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-amber-600 hover:to-amber-700 text-white font-semibold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/25"
                 >
                   {sending ? (
                     <>

@@ -203,7 +203,7 @@ export default function TasksPage() {
     return (
       <div className="min-h-screen bg-slate-900/50 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-slate-400">Загрузка...</p>
         </div>
       </div>
@@ -286,7 +286,7 @@ export default function TasksPage() {
                 {filteredTasks.map((task) => (
                   <div
                     key={task.id}
-                    className="p-5 bg-slate-50 rounded-xl border border-slate-700/50 hover:border-slate-600 hover:shadow-md transition-all"
+                    className="p-5 bg-slate-800/40 rounded-xl border border-slate-700/30 hover:border-emerald-500/20 hover:shadow-lg hover:shadow-emerald-500/5 transition-all duration-300"
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex-1">
@@ -330,9 +330,9 @@ export default function TasksPage() {
                           </button>
                           {user.role === 'DIRECTOR' && (
                             <>
-                              <button 
+                              <button
                                 onClick={() => handleEditTask(task.id)}
-                                className="p-2 text-slate-400 hover:text-amber-600 transition-colors"
+                                className="p-2 text-slate-400 hover:text-emerald-400 transition-colors"
                                 title="Редактировать"
                               >
                                 <Edit size={18} />
@@ -380,7 +380,7 @@ export default function TasksPage() {
                     value={newTask.description}
                     onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
                     rows={4}
-                    className="w-full px-4 py-2.5 text-white bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500"
+                    className="w-full px-4 py-2.5 text-white bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500"
                     required
                   />
                 </div>

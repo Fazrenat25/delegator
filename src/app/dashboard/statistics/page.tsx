@@ -169,7 +169,7 @@ export default function StatisticsPage() {
             'DEVELOPER': 'from-violet-500 to-violet-600',
             'DESIGNER': 'from-pink-500 to-pink-600',
             'ANALYST': 'from-cyan-500 to-cyan-600',
-            'TESTER': 'from-amber-500 to-amber-600',
+            'TESTER': 'from-cyan-500 to-cyan-600',
             'HR': 'from-rose-500 to-rose-600',
             'ACCOUNTANT': 'from-emerald-500 to-emerald-600',
             'SALESMAN': 'from-orange-500 to-orange-600',
@@ -272,7 +272,7 @@ export default function StatisticsPage() {
       <DashboardLayout user={user || { id: '', username: '', firstName: '', lastName: '', role: '' }}>
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
-            <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <div className="w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <p className="text-slate-400">Загрузка статистики...</p>
           </div>
         </div>
@@ -311,7 +311,7 @@ export default function StatisticsPage() {
             title="В работе"
             value={stats?.inProgressTasks || 0}
             icon={Clock}
-            color="from-amber-500 to-amber-600"
+            color="from-cyan-500 to-cyan-600"
             trend={3}
             trendUp={false}
           />
@@ -352,7 +352,7 @@ export default function StatisticsPage() {
             <Card className="border-slate-700/50 shadow-lg h-full">
               <CardHeader className="border-b border-slate-700/50">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/25">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center shadow-lg shadow-cyan-500/25">
                     <Timer className="w-5 h-5 text-white" />
                   </div>
                   <div>
@@ -437,7 +437,7 @@ export default function StatisticsPage() {
           <Card className="border-slate-700/50 shadow-lg">
             <CardHeader className="border-b border-slate-700/50">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/25">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center shadow-lg shadow-cyan-500/25">
                   <PieChart className="w-5 h-5 text-white" />
                 </div>
                 <div>
@@ -477,7 +477,7 @@ export default function StatisticsPage() {
                   stats?.topEmployees.map((employee, index) => (
                     <div
                       key={index}
-                      className="flex items-center gap-4 p-3 rounded-xl bg-slate-50 hover:bg-slate-700/50 transition-all"
+                      className="flex items-center gap-4 p-3 rounded-xl bg-slate-800/40 hover:bg-slate-700/50 transition-all"
                     >
                       <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-slate-400 to-slate-600 text-white font-bold text-sm">
                         {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : index + 1}
@@ -575,7 +575,7 @@ function WeeklyChart({ data }: { data: Array<{ day: string; completed: number; c
                 title={`Завершено: ${item.completed}`}
               />
               <div
-                className="w-3 bg-gradient-to-t from-amber-500 to-amber-400 rounded-t transition-all hover:from-amber-600 hover:to-amber-500"
+                className="w-3 bg-gradient-to-t from-cyan-500 to-amber-400 rounded-t transition-all hover:from-amber-600 hover:to-amber-500"
                 style={{ height: `${(item.created / maxValue) * 100}%`, minHeight: '4px' }}
                 title={`Создано: ${item.created}`}
               />

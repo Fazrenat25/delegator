@@ -119,7 +119,7 @@ export default function DashboardPage() {
     return (
       <div className="min-h-screen bg-slate-900/50 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-slate-400">Загрузка...</p>
         </div>
       </div>
@@ -370,12 +370,12 @@ export default function DashboardPage() {
               <Card hover>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30">
+                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/30">
                       <Target className="w-6 h-6 text-white" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-slate-400">Ожидает</p>
-                      <p className="text-2xl font-bold text-amber-600">{stats.pendingTasks}</p>
+                      <p className="text-2xl font-bold text-cyan-600">{stats.pendingTasks}</p>
                     </div>
                   </div>
                 </CardContent>

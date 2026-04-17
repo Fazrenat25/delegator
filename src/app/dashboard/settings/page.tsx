@@ -153,7 +153,7 @@ export default function SettingsPage() {
     return (
       <div className="min-h-screen bg-slate-900/50 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-slate-400">Загрузка...</p>
         </div>
       </div>
@@ -175,7 +175,7 @@ export default function SettingsPage() {
           <Card className="lg:col-span-1 order-first">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Shield className="w-5 h-5 text-amber-500" />
+                <Shield className="w-5 h-5 text-emerald-400" />
                 Информация
               </CardTitle>
             </CardHeader>
@@ -183,7 +183,7 @@ export default function SettingsPage() {
               <div className="space-y-5">
                 {/* Avatar + Role */}
                 <div className="flex flex-col items-center p-4 bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl border border-slate-700/50">
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-amber-500/25 mb-3">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-emerald-500/25 mb-3">
                     {user.firstName[0]}{user.lastName[0]}
                   </div>
                   <p className="font-semibold text-white text-center">
@@ -196,7 +196,7 @@ export default function SettingsPage() {
 
                 {/* Info Items */}
                 <div className="space-y-3 pt-2">
-                  <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                  <div className="flex items-center gap-3 p-3 bg-slate-800/40 rounded-lg">
                     <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0 shadow-md shadow-blue-500/20">
                       <UserCircle className="w-4 h-4 text-white" />
                     </div>
@@ -206,7 +206,7 @@ export default function SettingsPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                  <div className="flex items-center gap-3 p-3 bg-slate-800/40 rounded-lg">
                     <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center flex-shrink-0 shadow-md shadow-emerald-500/20">
                       <Mail className="w-4 h-4 text-white" />
                     </div>
@@ -216,7 +216,7 @@ export default function SettingsPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                  <div className="flex items-center gap-3 p-3 bg-slate-800/40 rounded-lg">
                     <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center flex-shrink-0 shadow-md shadow-violet-500/20">
                       <Hash className="w-4 h-4 text-white" />
                     </div>
@@ -234,7 +234,7 @@ export default function SettingsPage() {
           <Card className="lg:col-span-2">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <User className="w-5 h-5 text-amber-500" />
+                <User className="w-5 h-5 text-emerald-400" />
                 Профиль
               </CardTitle>
             </CardHeader>
@@ -276,7 +276,7 @@ export default function SettingsPage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Lock className="w-5 h-5 text-amber-500" />
+              <Lock className="w-5 h-5 text-emerald-400" />
               Изменение пароля
             </CardTitle>
           </CardHeader>
@@ -321,12 +321,12 @@ export default function SettingsPage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Bell className="w-5 h-5 text-amber-500" />
+              <Bell className="w-5 h-5 text-emerald-400" />
               Уведомления
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
+            <div className="flex items-center justify-between p-4 bg-slate-800/40 rounded-lg">
               <div>
                 <p className="font-medium text-white">Email уведомления</p>
                 <p className="text-sm text-slate-500">Получать уведомления на email</p>
@@ -345,7 +345,7 @@ export default function SettingsPage() {
               </button>
             </div>
 
-            <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
+            <div className="flex items-center justify-between p-4 bg-slate-800/40 rounded-lg">
               <div>
                 <p className="font-medium text-white">Уведомления о задачах</p>
                 <p className="text-sm text-slate-500">Новые задачи и изменения статуса</p>
@@ -364,7 +364,7 @@ export default function SettingsPage() {
               </button>
             </div>
 
-            <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
+            <div className="flex items-center justify-between p-4 bg-slate-800/40 rounded-lg">
               <div>
                 <p className="font-medium text-white">Напоминания о дедлайнах</p>
                 <p className="text-sm text-slate-500">Уведомления о приближающихся сроках</p>
@@ -389,20 +389,20 @@ export default function SettingsPage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Palette className="w-5 h-5 text-amber-500" />
+              <Palette className="w-5 h-5 text-emerald-400" />
               Внешний вид
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
+              <div className="flex items-center justify-between p-4 bg-slate-800/40 rounded-lg">
                 <div>
                   <p className="font-medium text-white">Тёмная тема</p>
                   <p className="text-sm text-slate-500">Использовать тёмную тему оформления</p>
                 </div>
                 <Badge variant="default" size="sm">Скоро</Badge>
               </div>
-              <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
+              <div className="flex items-center justify-between p-4 bg-slate-800/40 rounded-lg">
                 <div>
                   <p className="font-medium text-white">Компактный режим</p>
                   <p className="text-sm text-slate-500">Уменьшить размеры элементов</p>

@@ -124,7 +124,7 @@ export default function EmployeeStatisticsPage() {
     return (
       <div className="min-h-screen bg-slate-900/50 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-slate-400">Загрузка статистики...</p>
         </div>
       </div>
@@ -215,9 +215,9 @@ export default function EmployeeStatisticsPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-slate-400 mb-1">Процент выполнения</p>
-                  <p className="text-3xl font-bold text-amber-600">{stats.completionRate}%</p>
+                  <p className="text-3xl font-bold text-cyan-600">{stats.completionRate}%</p>
                 </div>
-                <div className="w-14 h-14 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30">
+                <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/30">
                   <TrendingUp className="w-7 h-7 text-white" />
                 </div>
               </div>
@@ -230,7 +230,7 @@ export default function EmployeeStatisticsPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Award className="w-5 h-5 text-amber-500" />
+                <Award className="w-5 h-5 text-cyan-400" />
                 Распределение задач
               </CardTitle>
             </CardHeader>
@@ -296,7 +296,7 @@ export default function EmployeeStatisticsPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-amber-500" />
+                <TrendingUp className="w-5 h-5 text-cyan-400" />
                 Показатели эффективности
               </CardTitle>
             </CardHeader>
@@ -315,10 +315,10 @@ export default function EmployeeStatisticsPage() {
                 </div>
               </div>
 
-              <div className="p-4 bg-amber-50 rounded-lg border border-amber-100">
+              <div className="p-4 bg-cyan-500/10 rounded-lg border border-cyan-500/30">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-amber-700">Активных задач</span>
-                  <span className="text-2xl font-bold text-amber-900">{stats.inProgressTasks + stats.pendingTasks}</span>
+                  <span className="text-sm font-medium text-cyan-700">Активных задач</span>
+                  <span className="text-2xl font-bold text-cyan-900">{stats.inProgressTasks + stats.pendingTasks}</span>
                 </div>
               </div>
             </CardContent>
@@ -329,7 +329,7 @@ export default function EmployeeStatisticsPage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Briefcase className="w-5 h-5 text-amber-500" />
+              <Briefcase className="w-5 h-5 text-cyan-400" />
               Последние задачи
             </CardTitle>
           </CardHeader>
@@ -344,7 +344,7 @@ export default function EmployeeStatisticsPage() {
                 {stats.recentTasks.map((task) => (
                   <div
                     key={task.id}
-                    className="flex items-center justify-between p-4 bg-slate-50 rounded-lg border border-slate-700/50"
+                    className="flex items-center justify-between p-4 bg-slate-800/40 rounded-lg border border-slate-700/50"
                   >
                     <div className="flex-1 min-w-0">
                       <h4 className="font-medium text-white mb-1 truncate">{task.title}</h4>

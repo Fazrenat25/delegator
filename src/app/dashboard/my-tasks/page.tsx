@@ -106,7 +106,7 @@ export default function MyTasksPage() {
     return (
       <div className="min-h-screen bg-slate-900/50 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-slate-400">Загрузка...</p>
         </div>
       </div>
@@ -143,9 +143,9 @@ export default function MyTasksPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-slate-400 mb-1">В ожидании</p>
-                  <p className="text-3xl font-bold text-amber-600">{stats.pending}</p>
+                  <p className="text-3xl font-bold text-cyan-600">{stats.pending}</p>
                 </div>
-                <div className="w-14 h-14 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30">
+                <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/30">
                   <Clock className="w-7 h-7 text-white" />
                 </div>
               </div>
@@ -198,7 +198,7 @@ export default function MyTasksPage() {
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
-                  className="px-4 py-2.5 text-white bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500/30"
+                  className="px-4 py-2.5 text-white bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
                 >
                   <option value="all">Все статусы</option>
                   <option value="PENDING">В ожидании</option>
@@ -229,7 +229,7 @@ export default function MyTasksPage() {
                 {filteredTasks.map((task) => (
                   <div
                     key={task.id}
-                    className="p-5 bg-slate-50 rounded-xl border border-slate-700/50 hover:border-slate-600 hover:shadow-md transition-all"
+                    className="p-5 bg-slate-800/40 rounded-xl border border-slate-700/50 hover:border-slate-600 hover:shadow-md transition-all"
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex-1">

@@ -283,7 +283,7 @@ export default function EmployeesPage() {
     return (
       <div className="min-h-screen bg-slate-900/50 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-slate-400">Загрузка...</p>
         </div>
       </div>
@@ -342,11 +342,11 @@ export default function EmployeesPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-slate-400 mb-1">Новых за месяц</p>
-                  <p className="text-3xl font-bold text-amber-600">
+                  <p className="text-3xl font-bold text-cyan-600">
                     {employees.filter(e => new Date(e.createdAt).getMonth() === new Date().getMonth()).length}
                   </p>
                 </div>
-                <div className="w-14 h-14 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30">
+                <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/30">
                   <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -389,7 +389,7 @@ export default function EmployeesPage() {
                 {filteredEmployees.map((employee) => (
                   <div
                     key={employee.id}
-                    className="p-5 bg-slate-50 rounded-xl border border-slate-700/50 hover:border-slate-600 hover:shadow-md transition-all"
+                    className="p-5 bg-slate-800/40 rounded-xl border border-slate-700/50 hover:border-slate-600 hover:shadow-md transition-all"
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-3">
@@ -416,15 +416,15 @@ export default function EmployeesPage() {
                           return (
                             <div className="flex items-center gap-3">
                               <div className="relative">
-                                <div className="w-3 h-3 rounded-full bg-amber-500 animate-pulse"></div>
-                                <div className="absolute inset-0 w-3 h-3 rounded-full bg-amber-500 animate-ping opacity-75"></div>
+                                <div className="w-3 h-3 rounded-full bg-cyan-500/100 animate-pulse"></div>
+                                <div className="absolute inset-0 w-3 h-3 rounded-full bg-cyan-500/100 animate-ping opacity-75"></div>
                               </div>
                               <div className="flex-1 text-left">
                                 <div className="flex items-center gap-2">
-                                  <p className="text-sm font-semibold text-amber-700">Занят</p>
-                                  <ArrowRight className="w-3 h-3 text-amber-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                  <p className="text-sm font-semibold text-cyan-700">Занят</p>
+                                  <ArrowRight className="w-3 h-3 text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </div>
-                                <p className="text-xs text-amber-600 truncate" title={task?.title}>
+                                <p className="text-xs text-cyan-600 truncate" title={task?.title}>
                                   {task?.title}
                                 </p>
                               </div>

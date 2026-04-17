@@ -297,7 +297,7 @@ export default function ChatPage() {
     return (
       <div className="min-h-screen bg-slate-900/50 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-slate-400">Загрузка чата...</p>
         </div>
       </div>
@@ -323,7 +323,7 @@ export default function ChatPage() {
           <Card className="lg:col-span-1 flex flex-col h-full overflow-hidden">
             <div className="p-4 border-b border-slate-700/50 bg-slate-900/50">
               <h2 className="font-semibold text-white flex items-center gap-2">
-                <Users className="w-5 h-5 text-amber-500" />
+                <Users className="w-5 h-5 text-emerald-400" />
                 Чаты
               </h2>
             </div>
@@ -332,10 +332,10 @@ export default function ChatPage() {
             <button
               onClick={handleBackToGeneral}
               className={`w-full p-4 flex items-center gap-3 hover:bg-slate-700/50 transition-colors border-b border-slate-700/50 ${
-                !selectedUserId ? 'bg-amber-50 border-amber-200' : ''
+                !selectedUserId ? 'bg-emerald-500/10 border-emerald-500/30' : ''
               }`}
             >
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center flex-shrink-0">
                 <MessageSquare className="w-5 h-5 text-white" />
               </div>
               <div className="text-left">
@@ -356,7 +356,7 @@ export default function ChatPage() {
                     key={employee.id}
                     onClick={() => handleSelectUser(employee)}
                     className={`w-full p-3 flex items-center gap-3 hover:bg-slate-700/50 transition-colors relative ${
-                      selectedUserId === employee.id ? 'bg-amber-50' : ''
+                      selectedUserId === employee.id ? 'bg-emerald-500/10' : ''
                     }`}
                   >
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-slate-500 to-slate-600 flex items-center justify-center text-white font-semibold flex-shrink-0 text-sm">
@@ -371,7 +371,7 @@ export default function ChatPage() {
                       </p>
                     </div>
                     {unreadCount > 0 && (
-                      <span className="flex items-center justify-center min-w-[20px] h-5 px-1.5 text-xs font-bold text-white bg-amber-500 rounded-full">
+                      <span className="flex items-center justify-center min-w-[20px] h-5 px-1.5 text-xs font-bold text-white bg-emerald-500/100 rounded-full">
                         {unreadCount > 99 ? '99+' : unreadCount}
                       </span>
                     )}
@@ -393,7 +393,7 @@ export default function ChatPage() {
               <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
                 selectedUser 
                   ? 'bg-gradient-to-br from-slate-500 to-slate-600' 
-                  : 'bg-gradient-to-br from-amber-500 to-amber-600'
+                  : 'bg-gradient-to-br from-emerald-500 to-teal-600'
               }`}>
                 {selectedUser ? (
                   <span className="text-white font-semibold text-sm">
@@ -440,7 +440,7 @@ export default function ChatPage() {
                         <div
                           className={`px-4 py-2 rounded-2xl ${
                             isOwn
-                              ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-br-md'
+                              ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-br-md'
                               : 'bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 text-white rounded-bl-md'
                           }`}
                         >
