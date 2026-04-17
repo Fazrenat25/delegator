@@ -31,7 +31,7 @@ export async function GET() {
 
     // Проверяем наличие файлов
     const enrichedBackups = await Promise.all(
-      backups.map(async (backup) => {
+      backups.map(async (backup: any) => {
         const filePath = path.join(BACKUP_DIR, backup.filename);
         const fileExists = fs.existsSync(filePath);
         return { ...backup, fileExists };
