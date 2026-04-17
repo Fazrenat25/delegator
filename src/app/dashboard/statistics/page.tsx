@@ -165,7 +165,7 @@ export default function StatisticsPage() {
           
           // Map department names to colors
           const deptColors: Record<string, string> = {
-            'MANAGER': 'from-blue-500 to-blue-600',
+            'MANAGER': 'from-emerald-500 to-teal-600',
             'DEVELOPER': 'from-violet-500 to-violet-600',
             'DESIGNER': 'from-pink-500 to-pink-600',
             'ANALYST': 'from-cyan-500 to-cyan-600',
@@ -295,7 +295,7 @@ export default function StatisticsPage() {
             title="Всего задач"
             value={stats?.totalTasks || 0}
             icon={Briefcase}
-            color="from-blue-500 to-blue-600"
+            color="from-emerald-500 to-teal-600"
             trend={12}
             trendUp={true}
           />
@@ -332,7 +332,7 @@ export default function StatisticsPage() {
               <CardHeader className="border-b border-slate-700/50">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/25">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-500/25">
                       <Activity className="w-5 h-5 text-white" />
                     </div>
                     <div>
@@ -372,7 +372,7 @@ export default function StatisticsPage() {
                   label="Среднее время"
                   value={`${stats?.avgCompletionTime || 0}ч`}
                   icon={Clock}
-                  color="text-blue-500"
+                  color="text-cyan-500"
                 />
                 <MetricRow
                   label="Срочных задач"
@@ -384,7 +384,7 @@ export default function StatisticsPage() {
                   label="Высокий приоритет"
                   value={stats?.tasksByPriority.high || 0}
                   icon={Award}
-                  color="text-amber-500"
+                  color="text-emerald-400"
                 />
               </CardContent>
             </Card>
@@ -409,7 +409,7 @@ export default function StatisticsPage() {
               {stats?.departmentStats.map((dept, index) => (
                 <div
                   key={index}
-                  className="p-4 rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-700/50 hover:shadow-md transition-all"
+                  className="p-4 rounded-xl bg-slate-800/40 border border-slate-700/30 hover:border-emerald-500/20 hover:shadow-lg hover:shadow-emerald-500/5 transition-all duration-300"
                 >
                   <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${dept.color} flex items-center justify-center mb-3 shadow-lg`}>
                     <Briefcase className="w-5 h-5 text-white" />
@@ -450,7 +450,7 @@ export default function StatisticsPage() {
               <div className="space-y-3">
                 <PriorityBar label="Срочно" value={stats?.tasksByPriority.urgent || 0} total={stats?.totalTasks || 1} color="bg-red-500" />
                 <PriorityBar label="Высокий" value={stats?.tasksByPriority.high || 0} total={stats?.totalTasks || 1} color="bg-amber-500" />
-                <PriorityBar label="Средний" value={stats?.tasksByPriority.medium || 0} total={stats?.totalTasks || 1} color="bg-blue-500" />
+                <PriorityBar label="Средний" value={stats?.tasksByPriority.medium || 0} total={stats?.totalTasks || 1} color="bg-cyan-500" />
                 <PriorityBar label="Низкий" value={stats?.tasksByPriority.low || 0} total={stats?.totalTasks || 1} color="bg-slate-400" />
               </div>
             </CardContent>
@@ -487,7 +487,7 @@ export default function StatisticsPage() {
                         <p className="text-xs text-slate-500">{employee.completedTasks} задач завершено</p>
                       </div>
                       {index < 3 && (
-                        <Star className="w-5 h-5 text-amber-500 fill-amber-500" />
+                        <Star className="w-5 h-5 text-emerald-400 fill-emerald-400" />
                       )}
                     </div>
                   ))
@@ -570,12 +570,12 @@ function WeeklyChart({ data }: { data: Array<{ day: string; completed: number; c
           <div key={index} className="flex-1 flex flex-col items-center gap-2">
             <div className="w-full flex gap-1 items-end justify-center h-40">
               <div
-                className="w-3 bg-gradient-to-t from-blue-500 to-blue-400 rounded-t transition-all hover:from-blue-600 hover:to-blue-500"
+                className="w-3 bg-gradient-to-t from-emerald-500 to-emerald-400 rounded-t transition-all hover:from-emerald-600 hover:to-emerald-500"
                 style={{ height: `${(item.completed / maxValue) * 100}%`, minHeight: '4px' }}
                 title={`Завершено: ${item.completed}`}
               />
               <div
-                className="w-3 bg-gradient-to-t from-cyan-500 to-amber-400 rounded-t transition-all hover:from-amber-600 hover:to-amber-500"
+                className="w-3 bg-gradient-to-t from-cyan-500 to-teal-400 rounded-t transition-all hover:from-teal-600 hover:to-teal-500"
                 style={{ height: `${(item.created / maxValue) * 100}%`, minHeight: '4px' }}
                 title={`Создано: ${item.created}`}
               />
@@ -586,11 +586,11 @@ function WeeklyChart({ data }: { data: Array<{ day: string; completed: number; c
       </div>
       <div className="flex items-center justify-center gap-6 pt-4 border-t border-slate-700/50">
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 bg-blue-500 rounded-sm" />
+          <div className="w-3 h-3 bg-cyan-500 rounded-sm" />
           <span className="text-xs text-slate-400">Завершено</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 bg-amber-500 rounded-sm" />
+          <div className="w-3 h-3 bg-emerald-500 rounded-sm" />
           <span className="text-xs text-slate-400">Создано</span>
         </div>
       </div>
@@ -620,7 +620,7 @@ function PriorityBar({ label, value, total, color }: { label: string; value: num
 
 // Card Components
 function Card({ children, className }: { children: React.ReactNode; className?: string }) {
-  return <div className={`rounded-2xl bg-white ${className || ''}`}>{children}</div>;
+  return <div className={`rounded-2xl bg-slate-800/40 backdrop-blur-sm border border-slate-700/30 ${className || ''}`}>{children}</div>;
 }
 
 function CardHeader({ children, className }: { children: React.ReactNode; className?: string }) {
