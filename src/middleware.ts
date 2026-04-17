@@ -10,7 +10,16 @@ export function middleware(request: NextRequest) {
   const isPublicRoute = publicRoutes.includes(pathname);
 
   // Публичные маршруты, доступные даже авторизованным пользователям
-  const publicAllRoutes = ['/pricing', '/privacy', '/terms'];
+  const publicAllRoutes = [
+    '/pricing',
+    '/privacy',
+    '/terms',
+    '/delegirovanie-zadach',
+    '/upravlenie-zadachami',
+    '/kontrol-sotrudnikov',
+    '/about',
+    '/contacts'
+  ];
   const isPublicAllRoute = publicAllRoutes.includes(pathname);
 
   // Если нет токена и пытаемся войти на защищенный маршрут
