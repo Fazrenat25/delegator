@@ -13,52 +13,52 @@ export default function DelegirovaniePage() {
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Контроль задач сотрудников
+            Система делегирования задач онлайн
           </h1>
           <p className="text-xl text-slate-300 leading-relaxed">
-            Delegon — это система контроля задач сотрудников, которая позволяет отслеживать выполнение задач и анализировать эффективность команды.
+            Delegon — это удобная система делегирования задач, которая позволяет быстро распределять задачи между сотрудниками и контролировать их выполнение.
           </p>
         </div>
 
         {/* Content Section */}
         <div className="space-y-12">
-          {/* Как контролировать сотрудников */}
+          {/* Как делегировать задачи эффективно */}
           <section className="bg-slate-800/40 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
                 <Target className="w-6 h-6 text-white" />
               </div>
-              <h2 className="text-3xl font-bold text-white">Как контролировать сотрудников</h2>
+              <h2 className="text-3xl font-bold text-white">Как делегировать задачи эффективно</h2>
             </div>
             <p className="text-lg text-slate-300 mb-6">
-              Сервис даёт полный контроль над задачами: статусы, сроки и ответственные.
+              Делегирование задач — ключевой навык руководителя. С помощью Delegon вы можете назначать задачи, устанавливать сроки и отслеживать результат.
             </p>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <CheckCircle className="w-6 h-6 text-emerald-400 flex-shrink-0 mt-1" />
-                <span className="text-slate-300 text-lg">Отслеживание статусов задач</span>
+                <span className="text-slate-300 text-lg">Постановка задач сотрудникам</span>
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle className="w-6 h-6 text-emerald-400 flex-shrink-0 mt-1" />
-                <span className="text-slate-300 text-lg">Контроль сроков</span>
+                <span className="text-slate-300 text-lg">Контроль сроков выполнения</span>
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle className="w-6 h-6 text-emerald-400 flex-shrink-0 mt-1" />
-                <span className="text-slate-300 text-lg">Анализ эффективности</span>
+                <span className="text-slate-300 text-lg">Прозрачная система ответственности</span>
               </li>
             </ul>
           </section>
 
-          {/* Преимущества системы */}
+          {/* Преимущества сервиса */}
           <section className="bg-slate-800/40 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center">
                 <BarChart3 className="w-6 h-6 text-white" />
               </div>
-              <h2 className="text-3xl font-bold text-white">Преимущества системы</h2>
+              <h2 className="text-3xl font-bold text-white">Преимущества сервиса</h2>
             </div>
             <p className="text-lg text-slate-300">
-              Вы всегда знаете, кто и над чем работает.
+              Delegon помогает снизить нагрузку на менеджеров и повысить эффективность команды.
             </p>
           </section>
 
@@ -66,7 +66,7 @@ export default function DelegirovaniePage() {
           <section className="text-center py-12">
             <div className="bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 rounded-2xl p-8">
               <h3 className="text-2xl font-bold text-white mb-4">
-                Начните контролировать задачи эффективно
+                Начните делегировать задачи эффективно
               </h3>
               <p className="text-slate-300 mb-6">
                 Попробуйте Delegon бесплатно и убедитесь в удобстве системы
