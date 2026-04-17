@@ -22,7 +22,7 @@ interface Reply {
 
 interface Message {
   id: string;
-  userId: string;
+  userId: string | null;
   message: string;
   status: string;
   createdAt: string;
@@ -34,7 +34,7 @@ interface Message {
     firstName: string;
     lastName: string;
     role: string;
-  };
+  } | null;
 }
 
 export default function AdminSupportPage() {
@@ -145,10 +145,10 @@ export default function AdminSupportPage() {
 
   const filteredMessages = search
     ? messages.filter(m =>
-        m.user.firstName.toLowerCase().includes(search.toLowerCase()) ||
-        m.user.lastName.toLowerCase().includes(search.toLowerCase()) ||
-        m.user.username.toLowerCase().includes(search.toLowerCase()) ||
-        m.message.toLowerCase().includes(search.toLowerCase())
+        (m.user?.firstName?.toLowerCase().includes(search.toLowerCase()) ||
+        m.user?.lastName?.toLowerCase().includes(search.toLowerCase()) ||
+        m.user?.username?.toLowerCase().includes(search.toLowerCase()) ||
+        m.message.toLowerCase().includes(search.toLowerCase()))
       )
     : messages;
 
@@ -297,21 +297,23 @@ export default function AdminSupportPage() {
                     <div className="flex items-center gap-3 flex-1 min-w-0">
                       <div className="w-10 h-10 rounded-full bg-gradient-to-br from-slate-600 to-slate-700 flex items-center justify-center flex-shrink-0">
                         <span className="text-sm font-bold text-white">
-                          {msg.user.firstName[0]}
-                          {msg.user.lastName[0]}
+                          {msg.user?.firstName?.[0] || '?'}
+                          {msg.user?.lastName?.[0] || '?'}
                         </span>
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
                           <p className="font-semibold text-white truncate">
-                            {msg.user.firstName} {msg.user.lastName}
+                            {msg.user ? `${msg.user.firstName} ${msg.user.lastName}` : 'Публичное обращение'}
                           </p>
                           <span className={`px-2 py-0.5 rounded-full border text-xs font-semibold flex items-center gap-1 flex-shrink-0 ${statusColors[msg.status]}`}>
                             {statusIcons[msg.status]}
                             {statusLabels[msg.status]}
                           </span>
                         </div>
-                        <p className="text-sm text-slate-400 truncate">@{msg.user.username}</p>
+                        <p className="text-sm text-slate-400 truncate">
+                          {msg.user ? `@${msg.user.username}` : 'Неавторизованный пользователь'}
+                        </p>
                         <p className="text-xs text-slate-500 mt-1 truncate">
                           {msg.message}
                         </p>
