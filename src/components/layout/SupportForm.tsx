@@ -6,6 +6,8 @@ import { MessageCircle, X, Send, CheckCircle } from 'lucide-react';
 export function SupportForm() {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [name, setName] = useState('');
+  const [contact, setContact] = useState('');
   const [message, setMessage] = useState('');
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
@@ -27,19 +29,23 @@ export function SupportForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!message.trim()) return;
+    if (!message.trim() || !name.trim() || !contact.trim()) return;
 
     setSending(true);
     try {
       const response = await fetch('/api/support-messages', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: message.trim() }),
+        body: JSON.stringify({
+          message: `Имя: ${name}\nКонтакт: ${contact}\n\nСообщение:\n${message.trim()}`
+        }),
       });
 
       const data = await response.json();
       if (data.success) {
         setSent(true);
+        setName('');
+        setContact('');
         setMessage('');
         setTimeout(() => {
           setSent(false);
@@ -61,7 +67,8 @@ export function SupportForm() {
     setIsOpen(true);
   };
 
-  if (!isLoggedIn) return null;
+  // Показываем только для НЕавторизованных пользователей
+  if (isLoggedIn) return null;
 
   return (
     <>
@@ -108,21 +115,52 @@ export function SupportForm() {
                 <p className="text-slate-400 text-sm">Мы ответим вам в ближайшее время</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit}>
-                <p className="text-slate-300 text-sm mb-4">
-                  Есть вопрос или предложение? Напишите нам, и мы свяжемся с вами через техподдержку.
-                </p>
-                <textarea
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Введите ваше сообщение..."
-                  rows={5}
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all resize-none mb-4"
-                  required
-                />
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                    Имя
+                  </label>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Ваше имя"
+                    className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                    Телефон или E-mail
+                  </label>
+                  <input
+                    type="text"
+                    value={contact}
+                    onChange={(e) => setContact(e.target.value)}
+                    placeholder="+7 (999) 123-45-67 или email@example.com"
+                    className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                    Сообщение
+                  </label>
+                  <textarea
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    placeholder="Введите ваше сообщение..."
+                    rows={4}
+                    className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all resize-none"
+                    required
+                  />
+                </div>
+
                 <button
                   type="submit"
-                  disabled={sending || !message.trim()}
+                  disabled={sending || !message.trim() || !name.trim() || !contact.trim()}
                   className="w-full py-3 bg-gradient-to-r from-violet-500 to-violet-600 hover:from-violet-600 hover:to-violet-700 text-white font-semibold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg shadow-violet-500/25"
                 >
                   {sending ? (
