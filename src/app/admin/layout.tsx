@@ -33,7 +33,7 @@ const navigation = [
   { name: 'Компании', href: '/admin/companies', icon: Building2 },
   { name: 'Тарифы', href: '/admin/subscriptions', icon: CreditCard },
   { name: 'Задачи', href: '/admin/tasks', icon: CheckSquare },
-  { name: 'Сообщения', href: '/admin/support', icon: MessageCircle },
+  { name: 'Обращения', href: '/admin/support', icon: MessageCircle },
   { name: 'Бэкапы', href: '/admin/backups', icon: Database },
   { name: 'Настройки', href: '/admin/settings', icon: Settings },
 ];
