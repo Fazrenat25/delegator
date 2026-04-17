@@ -812,6 +812,33 @@ export default function HomePageClient() {
           className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
           onClick={() => setSelectedPostIndex(null)}
         >
+          {/* Navigation arrows - outside modal */}
+          {selectedPostIndex > 0 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedPostIndex(selectedPostIndex - 1);
+              }}
+              className="fixed left-4 top-1/2 -translate-y-1/2 p-3 bg-slate-800/90 hover:bg-slate-700 rounded-full transition-all shadow-lg hover:scale-110 z-[60]"
+              title="Предыдущая новость"
+            >
+              <ChevronLeft className="w-6 h-6 text-emerald-400" />
+            </button>
+          )}
+
+          {selectedPostIndex < blogPosts.length - 1 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedPostIndex(selectedPostIndex + 1);
+              }}
+              className="fixed right-4 top-1/2 -translate-y-1/2 p-3 bg-slate-800/90 hover:bg-slate-700 rounded-full transition-all shadow-lg hover:scale-110 z-[60]"
+              title="Следующая новость"
+            >
+              <ChevronRight className="w-6 h-6 text-emerald-400" />
+            </button>
+          )}
+
           <div
             className="bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative"
             onClick={(e) => e.stopPropagation()}
@@ -823,27 +850,6 @@ export default function HomePageClient() {
             >
               <X className="w-5 h-5 text-slate-400" />
             </button>
-
-            {/* Navigation arrows */}
-            {selectedPostIndex > 0 && (
-              <button
-                onClick={() => setSelectedPostIndex(selectedPostIndex - 1)}
-                className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-slate-800/80 hover:bg-slate-700 rounded-full transition-all shadow-lg hover:scale-110"
-                title="Предыдущая новость"
-              >
-                <ChevronLeft className="w-6 h-6 text-emerald-400" />
-              </button>
-            )}
-
-            {selectedPostIndex < blogPosts.length - 1 && (
-              <button
-                onClick={() => setSelectedPostIndex(selectedPostIndex + 1)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-slate-800/80 hover:bg-slate-700 rounded-full transition-all shadow-lg hover:scale-110"
-                title="Следующая новость"
-              >
-                <ChevronRight className="w-6 h-6 text-emerald-400" />
-              </button>
-            )}
 
             {/* Content */}
             <div className="p-8">
