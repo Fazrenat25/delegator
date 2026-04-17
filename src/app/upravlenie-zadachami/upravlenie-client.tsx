@@ -10,6 +10,25 @@ export default function UpravleniePage() {
       <PublicHeader />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Navigation Links */}
+        <nav className="mb-8 flex flex-wrap gap-4 text-sm">
+          <Link href="/" className="text-slate-400 hover:text-emerald-400 transition-colors">
+            Главная
+          </Link>
+          <span className="text-slate-600">•</span>
+          <Link href="/delegirovanie-zadach" className="text-slate-400 hover:text-emerald-400 transition-colors">
+            Делегирование задач
+          </Link>
+          <span className="text-slate-600">•</span>
+          <Link href="/upravlenie-zadachami" className="text-emerald-400 font-semibold">
+            Управление задачами
+          </Link>
+          <span className="text-slate-600">•</span>
+          <Link href="/kontrol-sotrudnikov" className="text-slate-400 hover:text-emerald-400 transition-colors">
+            Контроль сотрудников
+          </Link>
+        </nav>
+
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
