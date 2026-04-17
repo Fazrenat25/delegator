@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { PublicHeader } from '@/components/layout/PublicHeader';
+import { YandexMetrikaInformer } from '@/components/YandexMetrika';
 import {
   CheckCircle, Clock, Users, Target, TrendingUp, Shield,
   Zap, Award, MessageSquare, ArrowRight, Star, BarChart3,
@@ -651,8 +652,8 @@ export default function HomePageClient() {
               </ul>
             </div>
           </div>
-          <div className="border-t border-slate-800 pt-8 text-center text-sm">
-            <p>&copy; {new Date().getFullYear()} Delegon. Все права защищены.</p>
+          <div className="border-t border-slate-800 pt-8">
+            <YandexMetrikaInformer />
           </div>
         </div>
       </footer>
