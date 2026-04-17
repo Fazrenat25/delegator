@@ -76,11 +76,11 @@ export async function GET(request: NextRequest) {
     });
 
     // Добавляем информацию о тарифе для каждой компании
-    const tasksWithPlan = tasks.map(task => {
+    const tasksWithPlan = tasks.map((task: any) => {
       // Находим директора компании
-      const director = task.company.users.find(u => u.role === 'DIRECTOR');
+      const director = task.company.users.find((u: any) => u.role === 'DIRECTOR');
       const subscription = director?.subscription;
-      
+
       return {
         ...task,
         company: {
