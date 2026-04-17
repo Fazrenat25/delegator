@@ -3,7 +3,6 @@
 import { ReactNode, useState, useEffect, useRef } from 'react';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { Sidebar } from './Sidebar';
-import { ThemeToggle } from './ThemeToggle';
 import { Bell, LogOut, Menu, X, ChevronLeft, ChevronRight, Crown, Star, MessageCircle } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { useRouter } from 'next/navigation';
@@ -292,9 +291,6 @@ export function DashboardLayout({ children, user }: DashboardLayoutProps) {
             </div>
 
             <div className="flex items-center gap-2 sm:gap-4 relative">
-              {/* Theme Toggle */}
-              <ThemeToggle />
-              
               {/* Notifications */}
               <div ref={notificationsRef} className="relative">
                 <button
