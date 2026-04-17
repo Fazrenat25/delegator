@@ -33,7 +33,8 @@ export function SupportForm() {
 
     setSending(true);
     try {
-      const response = await fetch('/api/support-messages', {
+      // Используем публичный endpoint для неавторизованных пользователей
+      const response = await fetch('/api/public-contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
