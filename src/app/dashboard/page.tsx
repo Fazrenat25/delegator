@@ -310,7 +310,7 @@ export default function DashboardPage() {
                         <Badge variant={task.priority === 'URGENT' ? 'danger' : task.priority === 'HIGH' ? 'warning' : 'info'} size="sm">
                           {getPriorityLabel(task.priority)}
                         </Badge>
-                        <span className={getStatusColor(task.status)}>
+                        <span className={`px-3 py-1 rounded-full text-sm font-medium border ${getStatusColor(task.status)}`}>
                           {getStatusLabel(task.status)}
                         </span>
                       </div>
