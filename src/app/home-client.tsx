@@ -7,7 +7,7 @@ import { YandexMetrikaInformer } from '@/components/YandexMetrika';
 import {
   CheckCircle, Clock, Users, Target, TrendingUp, Shield,
   Zap, Award, MessageSquare, ArrowRight, Star, BarChart3,
-  Sparkles, X, Mail, Phone, MapPin, Building
+  Sparkles, X, Mail, Phone, MapPin, Building, ChevronLeft, ChevronRight
 } from 'lucide-react';
 
 export default function HomePageClient() {
@@ -16,6 +16,7 @@ export default function HomePageClient() {
   const [loading, setLoading] = useState(true);
   const [activeModal, setActiveModal] = useState<'about' | 'contact' | 'support' | null>(null);
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
+  const [selectedPostIndex, setSelectedPostIndex] = useState<number | null>(null);
 
   useEffect(() => {
     async function checkAuth() {
@@ -52,12 +53,19 @@ export default function HomePageClient() {
   // Закрытие модального окна по Escape
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && activeModal) {
-        setActiveModal(null);
+      if (e.key === 'Escape') {
+        if (activeModal) setActiveModal(null);
+        if (selectedPostIndex !== null) setSelectedPostIndex(null);
+      }
+      if (e.key === 'ArrowLeft' && selectedPostIndex !== null && selectedPostIndex > 0) {
+        setSelectedPostIndex(selectedPostIndex - 1);
+      }
+      if (e.key === 'ArrowRight' && selectedPostIndex !== null && selectedPostIndex < blogPosts.length - 1) {
+        setSelectedPostIndex(selectedPostIndex + 1);
       }
     };
 
-    if (activeModal) {
+    if (activeModal || selectedPostIndex !== null) {
       document.addEventListener('keydown', handleEscape);
       document.body.style.overflow = 'hidden';
     }
@@ -66,7 +74,7 @@ export default function HomePageClient() {
       document.removeEventListener('keydown', handleEscape);
       document.body.style.overflow = 'auto';
     };
-  }, [activeModal]);
+  }, [activeModal, selectedPostIndex, blogPosts.length]);
 
   if (loading) {
     return (
@@ -584,10 +592,11 @@ export default function HomePageClient() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              {blogPosts.map((post) => (
+              {blogPosts.map((post, index) => (
                 <div
                   key={post.id}
-                  className="group rounded-2xl border border-slate-800 bg-slate-800/40 backdrop-blur-sm p-6 hover:border-emerald-500/30 hover:bg-slate-800/60 transition-all duration-300"
+                  onClick={() => setSelectedPostIndex(index)}
+                  className="group rounded-2xl border border-slate-800 bg-slate-800/40 backdrop-blur-sm p-6 hover:border-emerald-500/30 hover:bg-slate-800/60 transition-all duration-300 cursor-pointer"
                 >
                   <h3 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
                     {post.title}
@@ -792,6 +801,73 @@ export default function HomePageClient() {
                   </p>
                 </div>
               )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Blog Post Modal */}
+      {selectedPostIndex !== null && blogPosts[selectedPostIndex] && (
+        <div
+          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          onClick={() => setSelectedPostIndex(null)}
+        >
+          <div
+            className="bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close button */}
+            <button
+              onClick={() => setSelectedPostIndex(null)}
+              className="absolute top-4 right-4 p-2 hover:bg-slate-800 rounded-lg transition-colors z-10"
+            >
+              <X className="w-5 h-5 text-slate-400" />
+            </button>
+
+            {/* Navigation arrows */}
+            {selectedPostIndex > 0 && (
+              <button
+                onClick={() => setSelectedPostIndex(selectedPostIndex - 1)}
+                className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-slate-800/80 hover:bg-slate-700 rounded-full transition-all shadow-lg hover:scale-110"
+                title="Предыдущая новость"
+              >
+                <ChevronLeft className="w-6 h-6 text-emerald-400" />
+              </button>
+            )}
+
+            {selectedPostIndex < blogPosts.length - 1 && (
+              <button
+                onClick={() => setSelectedPostIndex(selectedPostIndex + 1)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-slate-800/80 hover:bg-slate-700 rounded-full transition-all shadow-lg hover:scale-110"
+                title="Следующая новость"
+              >
+                <ChevronRight className="w-6 h-6 text-emerald-400" />
+              </button>
+            )}
+
+            {/* Content */}
+            <div className="p-8">
+              <h2 className="text-3xl font-bold text-white mb-4">
+                {blogPosts[selectedPostIndex].title}
+              </h2>
+              <p className="text-sm text-slate-500 mb-6">
+                {new Date(blogPosts[selectedPostIndex].createdAt).toLocaleDateString('ru-RU', {
+                  day: 'numeric',
+                  month: 'long',
+                  year: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                })}
+              </p>
+              <div
+                className="prose prose-invert prose-lg max-w-none text-slate-300"
+                dangerouslySetInnerHTML={{ __html: blogPosts[selectedPostIndex].content }}
+              />
+            </div>
+
+            {/* Post counter */}
+            <div className="px-8 pb-6 text-center text-sm text-slate-500">
+              {selectedPostIndex + 1} из {blogPosts.length}
             </div>
           </div>
         </div>

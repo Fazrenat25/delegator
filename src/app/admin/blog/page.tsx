@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Plus, Trash2, X } from 'lucide-react';
+import { Plus, Trash2, X, Edit } from 'lucide-react';
 
 interface BlogPost {
   id: string;
@@ -20,6 +20,7 @@ export default function AdminBlogPage() {
   const [content, setContent] = useState('');
   const [isHtml, setIsHtml] = useState(false);
   const [creating, setCreating] = useState(false);
+  const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
 
   useEffect(() => {
     loadPosts();
@@ -46,8 +47,11 @@ export default function AdminBlogPage() {
 
     setCreating(true);
     try {
-      const response = await fetch('/api/admin/blog', {
-        method: 'POST',
+      const url = editingPost ? `/api/admin/blog?postId=${editingPost.id}` : '/api/admin/blog';
+      const method = editingPost ? 'PUT' : 'POST';
+
+      const response = await fetch(url, {
+        method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title: title.trim(), content: content.trim() }),
       });
@@ -58,16 +62,25 @@ export default function AdminBlogPage() {
         setContent('');
         setIsHtml(false);
         setShowModal(false);
+        setEditingPost(null);
         loadPosts();
       } else {
         alert('Ошибка: ' + data.error);
       }
     } catch (error) {
-      console.error('Error creating post:', error);
-      alert('Ошибка создания поста');
+      console.error('Error creating/updating post:', error);
+      alert('Ошибка сохранения поста');
     } finally {
       setCreating(false);
     }
+  };
+
+  const handleEdit = (post: BlogPost) => {
+    setEditingPost(post);
+    setTitle(post.title);
+    setContent(post.content);
+    setIsHtml(/<[a-z][\s\S]*>/i.test(post.content)); // Определяем, содержит ли HTML
+    setShowModal(true);
   };
 
   const handleDelete = async (postId: string) => {
@@ -143,13 +156,22 @@ export default function AdminBlogPage() {
                     })}
                   </p>
                 </div>
-                <button
-                  onClick={() => handleDelete(post.id)}
-                  className="p-2 hover:bg-red-500/10 rounded-lg transition-colors"
-                  title="Удалить"
-                >
-                  <Trash2 className="w-5 h-5 text-red-400" />
-                </button>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => handleEdit(post)}
+                    className="p-2 hover:bg-emerald-500/10 rounded-lg transition-colors"
+                    title="Редактировать"
+                  >
+                    <Edit className="w-5 h-5 text-emerald-400" />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(post.id)}
+                    className="p-2 hover:bg-red-500/10 rounded-lg transition-colors"
+                    title="Удалить"
+                  >
+                    <Trash2 className="w-5 h-5 text-red-400" />
+                  </button>
+                </div>
               </div>
             </div>
           ))
@@ -162,9 +184,17 @@ export default function AdminBlogPage() {
           <div className="bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl max-w-2xl w-full">
             <div className="p-6">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-bold text-white">Создать пост</h3>
+                <h3 className="text-xl font-bold text-white">
+                  {editingPost ? 'Редактировать пост' : 'Создать пост'}
+                </h3>
                 <button
-                  onClick={() => setShowModal(false)}
+                  onClick={() => {
+                    setShowModal(false);
+                    setEditingPost(null);
+                    setTitle('');
+                    setContent('');
+                    setIsHtml(false);
+                  }}
                   className="p-2 hover:bg-slate-800 rounded-lg transition-colors"
                 >
                   <X className="w-5 h-5 text-slate-400" />
@@ -219,7 +249,13 @@ export default function AdminBlogPage() {
                 <div className="flex gap-3">
                   <button
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => {
+                      setShowModal(false);
+                      setEditingPost(null);
+                      setTitle('');
+                      setContent('');
+                      setIsHtml(false);
+                    }}
                     className="flex-1 px-4 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white rounded-xl transition-all"
                   >
                     Отмена
@@ -229,7 +265,7 @@ export default function AdminBlogPage() {
                     disabled={creating || !title.trim() || !content.trim()}
                     className="flex-1 px-4 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-emerald-500/25"
                   >
-                    {creating ? 'Создание...' : 'Создать'}
+                    {creating ? 'Сохранение...' : (editingPost ? 'Сохранить' : 'Создать')}
                   </button>
                 </div>
               </form>

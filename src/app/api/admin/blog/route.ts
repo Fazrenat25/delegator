@@ -75,6 +75,66 @@ export async function POST(request: NextRequest) {
   }
 }
 
+// PUT - обновить пост (только для админа)
+export async function PUT(request: NextRequest) {
+  try {
+    const token = request.cookies.get('token')?.value;
+    if (!token) {
+      return NextResponse.json(
+        { success: false, error: 'Не авторизован' },
+        { status: 401 }
+      );
+    }
+
+    const admin = await getCurrentAdmin(token);
+    if (!admin) {
+      return NextResponse.json(
+        { success: false, error: 'Доступ запрещен' },
+        { status: 403 }
+      );
+    }
+
+    const { searchParams } = new URL(request.url);
+    const postId = searchParams.get('postId');
+
+    if (!postId) {
+      return NextResponse.json(
+        { success: false, error: 'ID поста не указан' },
+        { status: 400 }
+      );
+    }
+
+    const body = await request.json();
+    const { title, content } = body;
+
+    if (!title || !content) {
+      return NextResponse.json(
+        { success: false, error: 'Название и текст обязательны' },
+        { status: 400 }
+      );
+    }
+
+    const post = await prisma.blogPost.update({
+      where: { id: postId },
+      data: {
+        title: title.trim(),
+        content: content.trim(),
+      },
+    });
+
+    return NextResponse.json({
+      success: true,
+      data: { post },
+    });
+  } catch (error) {
+    console.error('Blog PUT error:', error);
+    return NextResponse.json(
+      { success: false, error: 'Ошибка обновления поста' },
+      { status: 500 }
+    );
+  }
+}
+
 // DELETE - удалить пост (только для админа)
 export async function DELETE(request: NextRequest) {
   try {
