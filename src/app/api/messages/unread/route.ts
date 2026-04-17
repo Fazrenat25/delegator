@@ -28,7 +28,7 @@ export async function GET(request: NextRequest) {
 
     // Преобразуем в объект { userId: count }
     const unreadMap: Record<string, number> = {};
-    unreadCounts.forEach(({ senderId, _count }) => {
+    unreadCounts.forEach(({ senderId, _count }: any) => {
       unreadMap[senderId] = _count.id;
     });
 
