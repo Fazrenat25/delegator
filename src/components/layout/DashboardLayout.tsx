@@ -391,7 +391,7 @@ export function DashboardLayout({ children, user }: DashboardLayoutProps) {
               </svg>
             </button>
 
-            <div className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-2xl p-8 shadow-2xl max-h-[85vh] overflow-y-auto custom-scrollbar">
+            <div className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-2xl p-8 shadow-2xl max-h-[85vh] overflow-hidden">
               {/* Header */}
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/10 border border-amber-500/30 rounded-full mb-4">
