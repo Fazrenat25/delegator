@@ -21,6 +21,7 @@ import {
   Globe,
   ArrowLeft,
   Database,
+  FileText,
 } from 'lucide-react';
 
 interface AdminLayoutProps {
@@ -34,6 +35,7 @@ const navigation = [
   { name: 'Тарифы', href: '/admin/subscriptions', icon: CreditCard },
   { name: 'Задачи', href: '/admin/tasks', icon: CheckSquare },
   { name: 'Обращения', href: '/admin/support', icon: MessageCircle },
+  { name: 'Блог', href: '/admin/blog', icon: FileText },
   { name: 'Бэкапы', href: '/admin/backups', icon: Database },
   { name: 'Настройки', href: '/admin/settings', icon: Settings },
 ];

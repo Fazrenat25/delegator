@@ -15,6 +15,7 @@ export default function HomePageClient() {
   const [userRole, setUserRole] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeModal, setActiveModal] = useState<'about' | 'contact' | 'support' | null>(null);
+  const [blogPosts, setBlogPosts] = useState<any[]>([]);
 
   useEffect(() => {
     async function checkAuth() {
@@ -32,7 +33,20 @@ export default function HomePageClient() {
       }
     }
 
+    async function loadBlogPosts() {
+      try {
+        const response = await fetch('/api/admin/blog?published=true');
+        const data = await response.json();
+        if (data.success) {
+          setBlogPosts(data.data.posts.slice(0, 3)); // Показываем только 3 последних поста
+        }
+      } catch (error) {
+        console.error('Blog posts load error:', error);
+      }
+    }
+
     checkAuth();
+    loadBlogPosts();
   }, []);
 
   // Закрытие модального окна по Escape
@@ -550,6 +564,50 @@ export default function HomePageClient() {
           </div>
         </div>
       </section>
+
+      {/* Blog Section */}
+      {blogPosts.length > 0 && (
+        <section className="py-20 bg-slate-900/50 relative overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="absolute top-20 right-20 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-20 left-20 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl"></div>
+          </div>
+
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Блог
+              </h2>
+              <p className="text-xl text-slate-400">
+                Последние новости и обновления
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {blogPosts.map((post) => (
+                <div
+                  key={post.id}
+                  className="group rounded-2xl border border-slate-800 bg-slate-800/40 backdrop-blur-sm p-6 hover:border-emerald-500/30 hover:bg-slate-800/60 transition-all duration-300"
+                >
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
+                    {post.title}
+                  </h3>
+                  <p className="text-slate-300 mb-4 line-clamp-3">
+                    {post.content}
+                  </p>
+                  <p className="text-sm text-slate-500">
+                    {new Date(post.createdAt).toLocaleDateString('ru-RU', {
+                      day: 'numeric',
+                      month: 'long',
+                      year: 'numeric',
+                    })}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CTA */}
       <section className="py-20 relative overflow-hidden">
