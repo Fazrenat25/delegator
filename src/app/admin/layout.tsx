@@ -4,7 +4,6 @@ import { ReactNode, useState } from 'react';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import {
   LayoutDashboard,
   Users,
@@ -155,7 +154,6 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
               <p className="text-slate-400 text-sm">Управление системой Delegon</p>
             </div>
             <div className="flex items-center gap-4">
-              <ThemeToggle />
               <Link
                 href="/"
                 className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded-xl hover:bg-emerald-500/20 hover:text-emerald-300 transition-all text-sm font-medium"
