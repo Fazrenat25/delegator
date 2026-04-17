@@ -174,8 +174,8 @@ export default function SupportTicketsPage() {
 
   const statusColors: Record<string, string> = {
     OPEN: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
-    IN_PROGRESS: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
-    CLOSED: 'bg-slate-800/400/10 text-slate-400 border-slate-500/30',
+    IN_PROGRESS: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30',
+    CLOSED: 'bg-slate-500/10 text-slate-400 border-slate-500/30',
   };
 
   const statusLabels: Record<string, string> = {
@@ -223,16 +223,16 @@ export default function SupportTicketsPage() {
               </div>
             </div>
           </div>
-          <div className="rounded-xl border border-blue-500/30 bg-blue-500/10 backdrop-blur-sm p-4">
+          <div className="rounded-xl border border-cyan-500/30 bg-cyan-500/10 backdrop-blur-sm p-4">
             <div className="flex items-center gap-3">
-              <Clock className="w-8 h-8 text-blue-400" />
+              <Clock className="w-8 h-8 text-cyan-400" />
               <div>
                 <p className="text-2xl font-bold text-white">{inProgressCount}</p>
-                <p className="text-xs text-blue-400">В работе</p>
+                <p className="text-xs text-cyan-400">В работе</p>
               </div>
             </div>
           </div>
-          <div className="rounded-xl border border-slate-500/30 bg-slate-800/400/10 backdrop-blur-sm p-4">
+          <div className="rounded-xl border border-slate-500/30 bg-slate-500/10 backdrop-blur-sm p-4">
             <div className="flex items-center gap-3">
               <CheckCircle className="w-8 h-8 text-slate-400" />
               <div>
@@ -249,7 +249,7 @@ export default function SupportTicketsPage() {
               <div className="p-6 border-b border-slate-700/50">
                 <h2 className="text-lg font-bold text-white">История обращений</h2>
               </div>
-              <div className="divide-y divide-slate-100">
+              <div className="divide-y divide-slate-700/50">
                 {loading ? (
                   <div className="py-12 text-center text-slate-400">
                     <div className="flex items-center justify-center gap-3">
@@ -333,14 +333,14 @@ export default function SupportTicketsPage() {
                               <>
                                 <div className="space-y-3">
                                   <div className="flex items-start gap-3">
-                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center flex-shrink-0">
+                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center flex-shrink-0">
                                       <span className="text-xs font-bold text-white">
                                         {user.firstName[0]}
                                       </span>
                                     </div>
                                     <div className="flex-1">
-                                      <div className="bg-amber-50 border border-amber-200 rounded-lg rounded-tl-none p-3">
-                                        <p className="text-xs text-cyan-600 font-semibold mb-1">Вы</p>
+                                      <div className="bg-slate-700/50 border border-slate-600/50 rounded-lg rounded-tl-none p-3">
+                                        <p className="text-xs text-emerald-400 font-semibold mb-1">Вы</p>
                                         <p className="text-white text-sm">{thread.message}</p>
                                       </div>
                                     </div>
@@ -356,8 +356,8 @@ export default function SupportTicketsPage() {
                                             </svg>
                                           </div>
                                           <div className="flex-1">
-                                            <div className="bg-violet-50 border border-violet-200 rounded-lg rounded-tl-none p-3">
-                                              <p className="text-xs text-violet-600 font-semibold mb-1">Поддержка</p>
+                                            <div className="bg-violet-500/10 border border-violet-500/30 rounded-lg rounded-tl-none p-3">
+                                              <p className="text-xs text-violet-400 font-semibold mb-1">Поддержка</p>
                                               <p className="text-white text-sm">{reply.message}</p>
                                               <p className="text-xs text-slate-500 mt-1">
                                                 {new Date(reply.createdAt).toLocaleDateString('ru-RU', {
@@ -372,14 +372,14 @@ export default function SupportTicketsPage() {
                                         </>
                                       ) : (
                                         <>
-                                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center flex-shrink-0">
+                                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center flex-shrink-0">
                                             <span className="text-xs font-bold text-white">
                                               {user.firstName[0]}
                                             </span>
                                           </div>
                                           <div className="flex-1">
-                                            <div className="bg-amber-50 border border-amber-200 rounded-lg rounded-tl-none p-3">
-                                              <p className="text-xs text-cyan-600 font-semibold mb-1">Вы</p>
+                                            <div className="bg-slate-700/50 border border-slate-600/50 rounded-lg rounded-tl-none p-3">
+                                              <p className="text-xs text-emerald-400 font-semibold mb-1">Вы</p>
                                               <p className="text-white text-sm">{reply.message}</p>
                                               <p className="text-xs text-slate-500 mt-1">
                                                 {new Date(reply.createdAt).toLocaleDateString('ru-RU', {
@@ -405,13 +405,13 @@ export default function SupportTicketsPage() {
                                         onChange={(e) => setReplyToReply(e.target.value)}
                                         placeholder="Ваш ответ..."
                                         rows={3}
-                                        className="w-full px-3 py-2 bg-slate-800/50 backdrop-blur-sm border border-amber-300 rounded-lg text-white text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 mb-2"
+                                        className="w-full px-3 py-2 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-white text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 mb-2"
                                       />
                                       <div className="flex items-center gap-2">
                                         <button
                                           onClick={() => handleReplyToSupport(thread.id)}
                                           disabled={sending || !replyToReply.trim()}
-                                          className="px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-white text-xs font-semibold rounded-lg transition-colors disabled:opacity-50 flex items-center gap-1"
+                                          className="px-3 py-1.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white text-xs font-semibold rounded-lg transition-colors disabled:opacity-50 flex items-center gap-1"
                                         >
                                           {sending ? (
                                             <>
@@ -430,7 +430,7 @@ export default function SupportTicketsPage() {
                                             setReplyToReply('');
                                             setReplyingToId(null);
                                           }}
-                                          className="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-300 text-xs font-semibold rounded-lg transition-colors"
+                                          className="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold rounded-lg transition-colors"
                                         >
                                           Отмена
                                         </button>
@@ -442,7 +442,7 @@ export default function SupportTicketsPage() {
                                         e.stopPropagation();
                                         setReplyingToId(thread.id);
                                       }}
-                                      className="mt-3 ml-11 text-xs text-cyan-600 hover:text-amber-700 font-semibold flex items-center gap-1"
+                                      className="mt-3 ml-11 text-xs text-emerald-400 hover:text-emerald-300 font-semibold flex items-center gap-1"
                                     >
                                       <MessageCircle className="w-3 h-3" />
                                       Продолжить обращение
@@ -473,7 +473,7 @@ export default function SupportTicketsPage() {
           <div className="lg:col-span-1">
             <div className="rounded-2xl border border-slate-700/50 bg-slate-800/50 backdrop-blur-sm p-6 shadow-sm sticky top-6">
               <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                <MessageCircle className="w-5 h-5 text-amber-500" />
+                <MessageCircle className="w-5 h-5 text-emerald-400" />
                 Создать новое обращение
               </h2>
               <form onSubmit={handleSubmit}>
@@ -488,7 +488,7 @@ export default function SupportTicketsPage() {
                 <button
                   type="submit"
                   disabled={sending || !newMessage.trim()}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-amber-600 hover:to-amber-700 text-white font-semibold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/25"
+                  className="w-full px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-semibold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25"
                 >
                   {sending ? (
                     <>
