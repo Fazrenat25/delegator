@@ -15,10 +15,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Создаём обращение без привязки к пользователю (для неавторизованных)
-    // Используем специального системного пользователя или создаем запись без userId
     const supportMessage = await prisma.supportMessage.create({
       data: {
-        userId: null, // Для публичных обращений userId может быть null
+        userId: undefined,
         message: message.trim(),
         status: 'OPEN',
       },

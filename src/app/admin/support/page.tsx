@@ -11,6 +11,8 @@ import {
   Clock,
   AlertCircle,
   Trash2,
+  Phone,
+  Mail,
 } from 'lucide-react';
 
 interface Reply {
@@ -175,6 +177,34 @@ export default function AdminSupportPage() {
   };
 
   const selectedMessage = messages.find(m => m.id === selectedMessageId);
+
+  // Парсинг контактных данных из публичного обращения
+  const parseContactInfo = (message: string) => {
+    const lines = message.split('\n');
+    let name = '';
+    let contact = '';
+    let actualMessage = '';
+
+    let foundContact = false;
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      if (line.startsWith('Имя:')) {
+        name = line.replace('Имя:', '').trim();
+      } else if (line.startsWith('Контакт:')) {
+        contact = line.replace('Контакт:', '').trim();
+        foundContact = true;
+      } else if (line.startsWith('Сообщение:')) {
+        actualMessage = lines.slice(i + 1).join('\n').trim();
+        break;
+      }
+    }
+
+    // Определяем тип контакта
+    const isPhone = /^[\d\s\+\-\(\)]+$/.test(contact);
+    const isEmail = /@/.test(contact);
+
+    return { name, contact, actualMessage, isPhone, isEmail };
+  };
 
   return (
     <div className="space-y-6">
@@ -368,7 +398,24 @@ export default function AdminSupportPage() {
                 <div>
                   <p className="text-sm text-slate-400 mb-2">Обращение:</p>
                   <div className="bg-gradient-to-br from-violet-500/10 to-violet-600/10 border border-violet-500/30 rounded-xl p-4">
-                    <p className="text-slate-200">{selectedMessage.message}</p>
+                    {selectedMessage.userId ? (
+                      <p className="text-slate-200">{selectedMessage.message}</p>
+                    ) : (
+                      <>
+                        {(() => {
+                          const { name, contact, actualMessage } = parseContactInfo(selectedMessage.message);
+                          return (
+                            <>
+                              <div className="mb-3 pb-3 border-b border-violet-500/20">
+                                <p className="text-sm text-violet-300 mb-1"><span className="font-semibold">Имя:</span> {name}</p>
+                                <p className="text-sm text-violet-300"><span className="font-semibold">Контакт:</span> {contact}</p>
+                              </div>
+                              <p className="text-slate-200">{actualMessage}</p>
+                            </>
+                          );
+                        })()}
+                      </>
+                    )}
                   </div>
                 </div>
 
@@ -430,34 +477,69 @@ export default function AdminSupportPage() {
                   </div>
                 )}
 
-                {/* Форма ответа */}
+                {/* Форма ответа или кнопки связи */}
                 {selectedMessage.status !== 'CLOSED' && (
                   <div>
-                    <p className="text-sm text-slate-400 mb-2">Ответить:</p>
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="text"
-                        value={replyText}
-                        onChange={(e) => setReplyText(e.target.value)}
-                        onKeyPress={(e) => e.key === 'Enter' && handleReply(selectedMessage.id)}
-                        placeholder="Напишите ответ..."
-                        className="flex-1 px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50"
-                      />
-                      <button
-                        onClick={() => handleReply(selectedMessage.id)}
-                        disabled={sending || !replyText.trim()}
-                        className="px-4 py-3 bg-gradient-to-br from-violet-500 to-violet-600 hover:from-violet-600 hover:to-violet-700 text-white rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-                      >
-                        {sending ? (
-                          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        ) : (
-                          <>
-                            <Send className="w-5 h-5" />
-                            Отправить
-                          </>
-                        )}
-                      </button>
-                    </div>
+                    {selectedMessage.userId ? (
+                      // Для авторизованных пользователей - форма ответа
+                      <>
+                        <p className="text-sm text-slate-400 mb-2">Ответить:</p>
+                        <div className="flex items-center gap-2">
+                          <input
+                            type="text"
+                            value={replyText}
+                            onChange={(e) => setReplyText(e.target.value)}
+                            onKeyPress={(e) => e.key === 'Enter' && handleReply(selectedMessage.id)}
+                            placeholder="Напишите ответ..."
+                            className="flex-1 px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50"
+                          />
+                          <button
+                            onClick={() => handleReply(selectedMessage.id)}
+                            disabled={sending || !replyText.trim()}
+                            className="px-4 py-3 bg-gradient-to-br from-violet-500 to-violet-600 hover:from-violet-600 hover:to-violet-700 text-white rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                          >
+                            {sending ? (
+                              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                            ) : (
+                              <>
+                                <Send className="w-5 h-5" />
+                                Отправить
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      </>
+                    ) : (
+                      // Для публичных обращений - кнопки связи
+                      <>
+                        <p className="text-sm text-slate-400 mb-2">Связаться с пользователем:</p>
+                        {(() => {
+                          const { contact, isPhone, isEmail } = parseContactInfo(selectedMessage.message);
+                          return (
+                            <div className="flex gap-2">
+                              {isPhone && (
+                                <a
+                                  href={`tel:${contact}`}
+                                  className="flex-1 py-3 bg-gradient-to-br from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-xl transition-all flex items-center justify-center gap-2 font-semibold"
+                                >
+                                  <Phone className="w-5 h-5" />
+                                  Позвонить
+                                </a>
+                              )}
+                              {isEmail && (
+                                <a
+                                  href={`mailto:${contact}`}
+                                  className="flex-1 py-3 bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-xl transition-all flex items-center justify-center gap-2 font-semibold"
+                                >
+                                  <Mail className="w-5 h-5" />
+                                  Ответить по e-mail
+                                </a>
+                              )}
+                            </div>
+                          );
+                        })()}
+                      </>
+                    )}
                   </div>
                 )}
 
