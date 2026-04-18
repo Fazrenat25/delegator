@@ -182,7 +182,7 @@ export default function SettingsPage() {
             <CardContent>
               <div className="space-y-5">
                 {/* Avatar + Role */}
-                <div className="flex flex-col items-center p-4 bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl border border-slate-700/50">
+                <div className="flex flex-col items-center p-4 bg-gradient-to-br from-slate-800/60 to-slate-800/40 rounded-xl border border-slate-700/50">
                   <div className="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-emerald-500/25 mb-3">
                     {user.firstName[0]}{user.lastName[0]}
                   </div>
