@@ -229,13 +229,16 @@ export default function MyTasksPage() {
                 {filteredTasks.map((task) => (
                   <div
                     key={task.id}
-                    className="p-5 bg-slate-800/40 rounded-xl border border-slate-700/50 hover:border-slate-600 hover:shadow-md transition-all"
+                    className="p-4 sm:p-5 bg-slate-800/40 rounded-xl border border-slate-700/50 hover:border-slate-600 hover:shadow-md transition-all"
                   >
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-white mb-2">{task.title}</h3>
-                        <p className="text-sm text-slate-400 mb-3">{task.description}</p>
-                        <div className="flex items-center gap-3">
+                    {/* Mobile: Stack vertically, Desktop: Side by side */}
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base sm:text-lg font-semibold text-white mb-2 break-words">{task.title}</h3>
+                        <p className="text-sm text-slate-400 mb-3 break-words">{task.description}</p>
+
+                        {/* Badges - wrap on mobile */}
+                        <div className="flex flex-wrap items-center gap-2">
                           <Badge variant={getStatusBadgeVariant(task.status)} size="sm">
                             {task.status === 'PENDING' && 'В ожидании'}
                             {task.status === 'IN_PROGRESS' && 'В работе'}
@@ -249,23 +252,27 @@ export default function MyTasksPage() {
                             {task.priority === 'URGENT' && 'Срочно'}
                           </Badge>
                           {task.deadline && (
-                            <span className="text-xs text-slate-500 flex items-center gap-1">
+                            <span className="text-xs text-slate-500 flex items-center gap-1 whitespace-nowrap">
                               <Clock size={14} />
                               {formatDate(task.deadline)}
                             </span>
                           )}
                         </div>
                       </div>
-                      <Button variant="outline" size="sm">
-                        <Link href={`/dashboard/tasks/${task.id}`} className="flex items-center">
+
+                      {/* Button - full width on mobile */}
+                      <Button variant="outline" size="sm" className="w-full sm:w-auto shrink-0">
+                        <Link href={`/dashboard/tasks/${task.id}`} className="flex items-center justify-center">
                           <Eye size={16} className="mr-1" />
                           Подробнее
                         </Link>
                       </Button>
                     </div>
-                    <div className="flex items-center justify-between text-sm text-slate-500 pt-3 border-t border-slate-700/50">
-                      <span>Создано: {formatDate(task.createdAt)}</span>
-                      <span>От: {task.createdBy.firstName} {task.createdBy.lastName}</span>
+
+                    {/* Footer - stack on mobile */}
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-0 text-xs sm:text-sm text-slate-500 pt-3 border-t border-slate-700/50">
+                      <span className="break-words">Создано: {formatDate(task.createdAt)}</span>
+                      <span className="break-words">От: {task.createdBy.firstName} {task.createdBy.lastName}</span>
                     </div>
                   </div>
                 ))}
