@@ -147,9 +147,9 @@ export default function RegisterPage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center p-4 sm:p-6">
       {/* Animated Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-amber-500/5 to-violet-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-emerald-500/5 to-teal-500/5 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative w-full max-w-6xl">
@@ -157,17 +157,17 @@ export default function RegisterPage() {
           {/* Left Side - Benefits */}
           <div className="hidden lg:block text-white space-y-8 pr-8">
             <Link href="/" className="flex items-center gap-4 mb-12 group">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 flex items-center justify-center shadow-2xl shadow-amber-500/30 group-hover:shadow-amber-500/50 transition-all duration-300">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-2xl shadow-emerald-500/30 group-hover:shadow-emerald-500/50 transition-all duration-300">
                 <svg className="w-9 h-9 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <span className="text-4xl font-bold bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent group-hover:from-amber-400 group-hover:via-amber-500 group-hover:to-amber-600 transition-all duration-300">Delegon</span>
+              <span className="text-4xl font-bold bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent group-hover:from-emerald-400 group-hover:via-teal-500 group-hover:to-cyan-600 transition-all duration-300">Delegon</span>
             </Link>
 
             <div>
               <h1 className="text-5xl font-bold mb-4 leading-tight">
-                Станьте <span className="bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 bg-clip-text text-transparent">директором</span> своей компании
+                Станьте <span className="bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-600 bg-clip-text text-transparent">директором</span> своей компании
               </h1>
               <p className="text-xl text-slate-400 font-light leading-relaxed">
                 Зарегистрируйтесь и получите полный контроль над бизнес-процессами вашей команды
@@ -176,8 +176,8 @@ export default function RegisterPage() {
 
             <div className="space-y-4">
               {benefits.map((benefit, index) => (
-                <div key={index} className="flex items-center gap-4 p-4 rounded-xl bg-slate-800/30 border border-slate-700/50 backdrop-blur-sm hover:border-amber-500/30 transition-all duration-300">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/20">
+                <div key={index} className="flex items-center gap-4 p-4 rounded-xl bg-slate-800/30 border border-slate-700/50 backdrop-blur-sm hover:border-emerald-500/30 transition-all duration-300">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-500/20">
                     {benefit.icon}
                   </div>
                   <span className="text-lg text-slate-200 font-medium">{benefit.text}</span>
@@ -187,7 +187,7 @@ export default function RegisterPage() {
 
             <div className="pt-8 border-t border-slate-800">
               <p className="text-slate-400 text-sm mb-4">Преимущества аккаунта директора:</p>
-              <div className="flex items-center gap-2 text-amber-400">
+              <div className="flex items-center gap-2 text-emerald-400">
                 <Crown className="w-5 h-5" />
                 <span className="font-medium">Полный доступ ко всем функциям системы</span>
               </div>
@@ -199,12 +199,12 @@ export default function RegisterPage() {
             {/* Mobile Logo */}
             <div className="lg:hidden text-center mb-8">
               <Link href="/" className="inline-flex items-center gap-3 mb-4 group">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 flex items-center justify-center shadow-2xl shadow-amber-500/30 group-hover:shadow-amber-500/50 transition-all duration-300">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-2xl shadow-emerald-500/30 group-hover:shadow-emerald-500/50 transition-all duration-300">
                   <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <span className="text-3xl font-bold bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent group-hover:from-amber-400 group-hover:via-amber-500 group-hover:to-amber-600 transition-all duration-300">Delegon</span>
+                <span className="text-3xl font-bold bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent group-hover:from-emerald-400 group-hover:via-teal-500 group-hover:to-cyan-600 transition-all duration-300">Delegon</span>
               </Link>
               <h1 className="text-2xl font-bold text-white mb-2">Регистрация нового директора</h1>
               <p className="text-slate-400 text-sm">Создайте аккаунт для управления вашей компанией</p>
@@ -231,7 +231,7 @@ export default function RegisterPage() {
 
                 <div className="mb-6">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/25">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-500/25">
                       <Crown className="w-5 h-5 text-white" />
                     </div>
                     <h2 className="text-xl font-bold text-white">Создать аккаунт директора</h2>
@@ -255,7 +255,7 @@ export default function RegisterPage() {
                       placeholder="Иван"
                       value={formData.firstName}
                       onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                      className="bg-slate-900/50 border-slate-600 text-white placeholder-slate-500 focus:border-amber-500 focus:ring-amber-500/20"
+                      className="bg-slate-900/50 border-slate-600 text-white placeholder-slate-500 focus:border-emerald-500 focus:ring-emerald-500/20"
                       required
                     />
                     <Input
@@ -263,7 +263,7 @@ export default function RegisterPage() {
                       placeholder="Иванов"
                       value={formData.lastName}
                       onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                      className="bg-slate-900/50 border-slate-600 text-white placeholder-slate-500 focus:border-amber-500 focus:ring-amber-500/20"
+                      className="bg-slate-900/50 border-slate-600 text-white placeholder-slate-500 focus:border-emerald-500 focus:ring-emerald-500/20"
                       required
                     />
                   </div>
@@ -289,7 +289,7 @@ export default function RegisterPage() {
                     placeholder="ООО «Вектор»"
                     value={formData.companyName}
                     onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                    className="bg-slate-900/50 border-slate-600 text-white placeholder-slate-500 focus:border-amber-500 focus:ring-amber-500/20"
+                    className="bg-slate-900/50 border-slate-600 text-white placeholder-slate-500 focus:border-emerald-500 focus:ring-emerald-500/20"
                     required
                   />
 
@@ -299,7 +299,7 @@ export default function RegisterPage() {
                     placeholder="••••••••"
                     value={formData.password}
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                    className="bg-slate-900/50 border-slate-600 text-white placeholder-slate-500 focus:border-amber-500 focus:ring-amber-500/20"
+                    className="bg-slate-900/50 border-slate-600 text-white placeholder-slate-500 focus:border-emerald-500 focus:ring-emerald-500/20"
                     required
                     autoComplete="new-password"
                   />
@@ -310,14 +310,14 @@ export default function RegisterPage() {
                     placeholder="••••••••"
                     value={formData.confirmPassword}
                     onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                    className="bg-slate-900/50 border-slate-600 text-white placeholder-slate-500 focus:border-amber-500 focus:ring-amber-500/20"
+                    className="bg-slate-900/50 border-slate-600 text-white placeholder-slate-500 focus:border-emerald-500 focus:ring-emerald-500/20"
                     required
                     autoComplete="new-password"
                   />
 
                   <Button
                     type="submit"
-                    className="w-full mt-6 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-semibold py-3 px-6 rounded-xl shadow-xl shadow-amber-500/25 transition-all duration-300 hover:shadow-amber-500/40"
+                    className="w-full mt-6 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-semibold py-3 px-6 rounded-xl shadow-xl shadow-emerald-500/25 transition-all duration-300 hover:shadow-emerald-500/40"
                     size="lg"
                     isLoading={isLoading}
                   >
@@ -338,7 +338,7 @@ export default function RegisterPage() {
                 <div className="mt-6 pt-6 border-t border-slate-700/50 text-center">
                   <p className="text-slate-400 text-sm">
                     Уже есть аккаунт?{' '}
-                    <Link href="/login" className="text-amber-500 hover:text-amber-400 font-semibold transition-colors">
+                    <Link href="/login" className="text-emerald-400 hover:text-emerald-300 font-semibold transition-colors">
                       Войти в систему
                     </Link>
                   </p>
