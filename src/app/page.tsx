@@ -3,6 +3,9 @@ import HomePageClient from './home-client';
 
 const SITE_URL = 'https://delegon.ru';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: 'Delegon - Эффективное делегирование задач для вашего бизнеса',
   description:
