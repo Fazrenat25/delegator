@@ -13,7 +13,7 @@ import {
 export default function HomePageClient() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userRole, setUserRole] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [activeModal, setActiveModal] = useState<'about' | 'contact' | 'support' | null>(null);
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
   const [selectedPostIndex, setSelectedPostIndex] = useState<number | null>(null);
@@ -29,8 +29,6 @@ export default function HomePageClient() {
         }
       } catch (error) {
         console.error('Auth check error:', error);
-      } finally {
-        setLoading(false);
       }
     }
 
@@ -75,22 +73,6 @@ export default function HomePageClient() {
       document.body.style.overflow = 'auto';
     };
   }, [activeModal, selectedPostIndex, blogPosts.length]);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
-        <div className="text-center">
-          <div className="relative">
-            <div className="w-16 h-16 border-4 border-amber-500/30 border-t-amber-500 rounded-full animate-spin mx-auto mb-4"></div>
-            <div className="absolute inset-0 w-16 h-16 mx-auto mb-4">
-              <div className="w-full h-full rounded-full bg-amber-500/20 animate-pulse"></div>
-            </div>
-          </div>
-          <p className="text-slate-400 animate-pulse">Загрузка...</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
