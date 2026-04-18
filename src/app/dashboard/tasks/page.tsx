@@ -286,12 +286,14 @@ export default function TasksPage() {
                 {filteredTasks.map((task) => (
                   <div
                     key={task.id}
-                    className="p-5 bg-slate-800/40 rounded-xl border border-slate-700/30 hover:border-emerald-500/20 hover:shadow-lg hover:shadow-emerald-500/5 transition-all duration-300"
+                    className="p-4 sm:p-5 bg-slate-800/40 rounded-xl border border-slate-700/30 hover:border-emerald-500/20 hover:shadow-lg hover:shadow-emerald-500/5 transition-all duration-300"
                   >
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-2">
-                          <h3 className="text-lg font-semibold text-white">{task.title}</h3>
+                    {/* Mobile: Stack vertically, Desktop: Side by side */}
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                      <div className="flex-1 min-w-0">
+                        {/* Title and Priority */}
+                        <div className="flex flex-wrap items-center gap-2 mb-2">
+                          <h3 className="text-base sm:text-lg font-semibold text-white break-words">{task.title}</h3>
                           <Badge
                             variant={task.priority === 'URGENT' ? 'danger' : task.priority === 'HIGH' ? 'warning' : 'info'}
                             size="sm"
@@ -299,50 +301,56 @@ export default function TasksPage() {
                             {getPriorityLabel(task.priority)}
                           </Badge>
                         </div>
-                        <p className="text-slate-400 mb-3">{task.description}</p>
-                        <div className="flex items-center gap-4 text-sm text-slate-500">
-                          <span>
+
+                        {/* Description */}
+                        <p className="text-sm sm:text-base text-slate-400 mb-3 break-words">{task.description}</p>
+
+                        {/* Info - Stack on mobile */}
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm text-slate-500">
+                          <span className="break-words">
                             <strong>Создатель:</strong> {task.createdBy.firstName} {task.createdBy.lastName}
                           </span>
                           {task.assignedTo && (
-                            <span>
+                            <span className="break-words">
                               <strong>Исполнитель:</strong> {task.assignedTo.firstName} {task.assignedTo.lastName}
                             </span>
                           )}
                           {task.deadline && (
-                            <span>
+                            <span className="break-words">
                               <strong>Срок:</strong> {formatDate(task.deadline)}
                             </span>
                           )}
                         </div>
                       </div>
-                      <div className="flex flex-col items-end gap-2">
-                        <span className={`px-3 py-1 rounded-full text-sm font-medium border ${getStatusColor(task.status)}`}>
+
+                      {/* Status and Actions */}
+                      <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-3 sm:gap-2 shrink-0">
+                        <span className={`px-2.5 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium border whitespace-nowrap ${getStatusColor(task.status)}`}>
                           {getStatusLabel(task.status)}
                         </span>
-                        <div className="flex items-center gap-2">
-                          <button 
+                        <div className="flex items-center gap-1 sm:gap-2">
+                          <button
                             onClick={() => handleViewTask(task.id)}
-                            className="p-2 text-slate-400 hover:text-blue-600 transition-colors"
+                            className="p-1.5 sm:p-2 text-slate-400 hover:text-blue-600 transition-colors"
                             title="Просмотр"
                           >
-                            <Eye size={18} />
+                            <Eye size={16} className="sm:w-[18px] sm:h-[18px]" />
                           </button>
                           {user.role === 'DIRECTOR' && (
                             <>
                               <button
                                 onClick={() => handleEditTask(task.id)}
-                                className="p-2 text-slate-400 hover:text-emerald-400 transition-colors"
+                                className="p-1.5 sm:p-2 text-slate-400 hover:text-emerald-400 transition-colors"
                                 title="Редактировать"
                               >
-                                <Edit size={18} />
+                                <Edit size={16} className="sm:w-[18px] sm:h-[18px]" />
                               </button>
-                              <button 
+                              <button
                                 onClick={() => handleDeleteTask(task.id, task.title)}
-                                className="p-2 text-slate-400 hover:text-red-600 transition-colors"
+                                className="p-1.5 sm:p-2 text-slate-400 hover:text-red-600 transition-colors"
                                 title="Удалить"
                               >
-                                <Trash2 size={18} />
+                                <Trash2 size={16} className="sm:w-[18px] sm:h-[18px]" />
                               </button>
                             </>
                           )}
